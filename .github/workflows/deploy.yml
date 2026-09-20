@@ -1,0 +1,28 @@
+# Publishes this website every time index.html changes.
+# You do not have to run anything — GitHub does it for you.
+name: Publish website
+
+on:
+  push:
+    branches: [main]      # runs whenever you save a change on GitHub
+  workflow_dispatch:      # or when you press "Run workflow" by hand
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .          # publish everything in this folder
+      - id: deploy
+        uses: actions/deploy-pages@v4
