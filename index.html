@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIDX Lab</title>
+
+  <style>
+    /* =====================================================
+       COLOURS — change these and the whole page changes
+       ===================================================== */
+    :root {
+      --red:   #7b1e2b;   /* main colour: buttons, links, numbers */
+      --black: #1b1a19;   /* headings */
+      --text:  #3d3b39;   /* normal text */
+      --grey:  #8d8882;   /* small labels */
+      --line:  #e5e1db;   /* thin lines */
+      --light: #f7f5f1;   /* light grey boxes */
+      --notice:#fcefdc;   /* the prototype bar at the top */
+    }
+
+    /* =====================================================
+       BASIC PAGE
+       ===================================================== */
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text);
+      background: white;
+    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; color: var(--black); }
+    a { color: var(--red); }
+
+    /* Keeps everything in a centred column */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    /* =====================================================
+       TOP BAR + MENU
+       ===================================================== */
+    .notice { background: var(--notice); font-size: 14px; padding: 8px 0; }
+
+    header { border-bottom: 1px solid var(--line); }
+    header .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding-top: 16px; padding-bottom: 16px; }
+    .logo { font-family: Georgia, serif; font-size: 26px; color: var(--black); text-decoration: none; }
+    .logo span { color: var(--red); font-style: italic; }
+    nav a { color: var(--text); text-decoration: none; margin-left: 18px; }
+    nav a:hover { color: var(--red); }
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+    .button { display: inline-block; padding: 12px 22px; border: 1px solid var(--line); color: var(--black); text-decoration: none; border-radius: 3px; }
+    .button.red { background: var(--red); border-color: var(--red); color: white; }
+
+    /* =====================================================
+       SECTIONS
+       ===================================================== */
+    section { padding: 50px 0; border-bottom: 1px solid var(--line); }
+    .hero h1 { font-size: 52px; line-height: 1.1; margin: 20px 0; max-width: 700px; }
+    .hero p { font-size: 20px; max-width: 600px; }
+    h2 { font-size: 34px; margin-top: 0; }
+
+    /* Cards in a grid (research areas, people) */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .card { border: 1px solid var(--line); padding: 20px; }
+    .card h3 { margin: 0 0 6px; }
+    .number { color: var(--red); font-style: italic; font-family: Georgia, serif; }
+    .role { color: var(--grey); font-size: 15px; margin: 0; }
+    .path { color: var(--red); font-size: 15px; }
+
+    /* Tables */
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); }
+    th { color: var(--grey); font-weight: normal; font-size: 15px; }
+    .blank td { background: var(--light); color: var(--grey); font-style: italic; }
+
+    /* Four steps */
+    .steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; list-style: none; padding: 0; }
+    .steps li { border-top: 3px solid var(--red); padding-top: 10px; }
+
+    footer { padding: 30px 0; color: var(--grey); font-size: 15px; }
+
+    /* Phones: smaller heading */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 36px; }
+      nav a { margin-left: 0; margin-right: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== PROTOTYPE NOTICE (delete this block when the content is real) ===== -->
+  <div class="notice">
+    <div class="container">Prototype — all content below is placeholder, not real AIDX Lab information.</div>
+  </div>
+
+  <!-- ===== MENU ===== -->
+  <header>
+    <div class="container">
+      <a class="logo" href="#">AIDX <span>Lab</span></a>
+      <nav>
+        <a href="#research">Research</a>
+        <a href="#people">People</a>
+        <a href="#join">Join us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== TOP OF THE PAGE ===== -->
+  <section class="hero">
+    <div class="container">
+      <h1>How should organisations decide when the data is incomplete?</h1>
+      <p>AIDX Lab — AI for Decision Excellence — is a research group in the Faculty of Law and Business at Australian Catholic University.</p>
+      <a class="button" href="#research">Our research</a>
+      <a class="button red" href="#join">Join the lab</a>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH AREAS (copy a card to add one) ===== -->
+  <section id="research">
+    <div class="container">
+      <h2>Research</h2>
+      <div class="grid">
+
+        <div class="card">
+          <span class="number">01</span>
+          <h3>Agentic AI</h3>
+          <p>What happens when an agent is given real tools and a real budget?</p>
+        </div>
+
+        <div class="card">
+          <span class="number">02</span>
+          <h3>AI Safety</h3>
+          <p>How do agent failures spread once a human stops checking every step?</p>
+        </div>
+
+        <div class="card">
+          <span class="number">03</span>
+          <h3>AI Evaluation</h3>
+          <p>What does a benchmark miss that a real deployment finds in a week?</p>
+        </div>
+
+        <div class="card">
+          <span class="number">04</span>
+          <h3>Human-AI Interaction</h3>
+          <p>When does an explanation change what a decision maker actually does?</p>
+        </div>
+
+        <div class="card">
+          <span class="number">05</span>
+          <h3>Cybersecurity</h3>
+          <p>Can an agent be talked into misusing the tools it was trusted with?</p>
+        </div>
+
+        <div class="card">
+          <span class="number">06</span>
+          <h3>Machine Learning</h3>
+          <p>Which model properties predict whether an agent stays on task?</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PEOPLE (copy a card to add a person) ===== -->
+  <section id="people">
+    <div class="container">
+      <h2>People</h2>
+      <div class="grid">
+
+        <div class="card">
+          <h3>R. Almeida</h3>
+          <p class="role">Lab Director</p>
+          <p>I work on what agents do when nobody is watching the steps in between.</p>
+          <p class="path">PhD, Melbourne → Postdoc, Toronto → ACU</p>
+        </div>
+
+        <div class="card">
+          <h3>S. Whitlock</h3>
+          <p class="role">Postdoctoral Fellow</p>
+          <p>I keep asking whether the person using the system actually made a better call.</p>
+          <p class="path">BSc Psychology → PhD, Sydney → AIDX</p>
+        </div>
+
+        <div class="card">
+          <h3>N. Okafor</h3>
+          <p class="role">PhD Candidate</p>
+          <p>I break things on purpose — mostly chains of agents that trust each other.</p>
+          <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+        </div>
+
+        <div class="card">
+          <h3>N. Aryan</h3>
+          <p class="role">PhD Candidate</p>
+          <p>I break things on purpose — mostly chains of agents that trust each other.</p>
+          <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+        </div>
+
+        <div class="card">
+          <h3>N. Arjun</h3>
+          <p class="role">PhD Candidate</p>
+          <p>I break things on purpose — mostly chains of agents that trust each other.</p>
+          <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+        </div>
+
+
+
+
+      </div>
+
+      <h3 style="margin-top: 40px;">Where past members went next</h3>
+      <table>
+        <tr><th>Name</th><th>Here as</th><th>Went on to</th></tr>
+        <tr><td>M. Halloran</td><td>Honours, 2025–2026</td><td>PhD candidate, Go8 university</td></tr>
+        <tr><td>K. Sandhu</td><td>PhD, 2022–2026</td><td>Research Scientist, industry lab</td></tr>
+        <tr><td>E. Vasquez</td><td>Summer intern, 2025</td><td>ML Engineer, startup</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== JOIN US ===== -->
+  <section id="join">
+    <div class="container">
+      <h2>Join the lab</h2>
+      <p>There is no closing date. We take Honours, Masters, PhD and placement students.</p>
+
+      <h3>What we ask for</h3>
+      <table>
+        <!-- The two grey rows stay blank until the faculty confirms the numbers -->
+        <tr class="blank"><td>Marks</td><td>Placeholder — confirm with the faculty</td></tr>
+        <tr class="blank"><td>English</td><td>Placeholder — confirm ACU's requirement</td></tr>
+        <tr><td>Publications</td><td>Not needed for Honours. Helpful for PhD.</td></tr>
+        <tr><td>Deadline</td><td>None. We read applications all year.</td></tr>
+      </table>
+
+      <h3>What to send</h3>
+      <ul>
+        <li>Your CV</li>
+        <li>Your academic transcript</li>
+        <li>A short note naming two or three research areas you like</li>
+        <li>A code sample, report or poster</li>
+      </ul>
+
+      <h3>How to apply</h3>
+      <ol class="steps">
+        <li><strong>1. Explore</strong><br>Read the research areas.</li>
+        <li><strong>2. Choose</strong><br>Pick one that interests you.</li>
+        <li><strong>3. Prepare</strong><br>Get the four things above ready.</li>
+        <li><strong>4. Apply</strong><br>Email us.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p>Email: <strong>placeholder [at] acu.edu.au</strong></p>
+      <p>Faculty of Law and Business, Australian Catholic University, North Sydney Campus</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      © 2026 AIDX Lab, Australian Catholic University.
+      [Paste ACU's official Acknowledgement of Country here.]
+    </div>
+  </footer>
+
+</body>
+</html>
