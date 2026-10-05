@@ -86,6 +86,24 @@
     /* Text selection picks up the accent instead of browser blue */
     ::selection { background: #f0dfe2; color: #17161a; }
 
+
+    /* --------------------------------------------------------------------
+       AIDX MONOGRAM, TILED
+       The lab's own initials, small and on the diagonal, repeating behind
+       the page. Drawn from the SVG below — no image file. Sits behind
+       everything and ignores clicks. Raise the opacity in the SVG to make
+       it more visible, lower it to make it quieter.
+       -------------------------------------------------------------------- */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%237b1e2b' opacity='.05'%3EAIDX%3C/text%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
     /* --------------------------------------------------------------------
        PAPER GRAIN
        A fine speckle over the whole page, drawn by the browser from the
@@ -99,7 +117,7 @@
       z-index: -1;
       pointer-events: none;
       opacity: .75;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.085'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.22'/%3E%3C/svg%3E");
     }
 
     h1, h2, h3 {
@@ -154,6 +172,8 @@
        A small label on the left, the content on the right.
        -------------------------------------------------------------------- */
     .cols { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 40px; }
+    /* Sections of cards run the full width, with the label above them */
+    .cols.wide { grid-template-columns: 1fr; gap: 4px; }
     .cols h2 { margin: 0 0 8px; font-size: 27px; }
     .cols h3 { margin: 30px 0 8px; font-size: 18px; }
     .lead-in { max-width: 62ch; margin: 0 0 26px; }
@@ -235,6 +255,7 @@
     .button {
       display: inline-block;
       padding: 11px 20px;
+      border-radius: var(--radius);
       background: var(--red);
       color: white;
       text-decoration: none;
@@ -268,6 +289,77 @@
       color: var(--grey);
     }
     .record b { color: var(--red); font-weight: 400; }
+
+
+    /* --------------------------------------------------------------------
+       2.6b  BANNER, JUMP BUTTONS AND CARDS
+       The banner replaces a photo header; the four buttons under it jump
+       to the sections below. Cards are used for research areas and
+       projects. Corners are softened by --radius, set once here.
+       -------------------------------------------------------------------- */
+    :root { --radius: 10px; --deep: #4a1019; }
+
+    .banner {
+      background: linear-gradient(135deg, var(--deep), var(--red));
+      color: #fff;
+      padding: 60px 0 52px;
+    }
+    .crumbs {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #e7c9ce;
+      margin: 0 0 18px;
+    }
+    .banner h1 {
+      color: #fff;
+      font-size: clamp(32px, 4.6vw, 50px);
+      line-height: 1.08;
+      max-width: 20ch;
+      margin: 0 0 24px;
+    }
+    .banner p { max-width: 66ch; margin: 0; font-size: 18px; color: rgba(255,255,255,.92); }
+    .banner .record { border-top-color: rgba(255,255,255,.25); color: rgba(255,255,255,.75); }
+    .banner .record b { color: #f3c9ce; }
+
+    /* The four jump buttons */
+    .jumps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 0; }
+    .jump {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      background: var(--deep); color: #fff; text-decoration: none;
+      padding: 15px 18px; font-size: 15px; font-weight: 600; border-radius: var(--radius);
+      transition: background .15s;
+    }
+    .jump:hover { background: var(--black); color: #fff; }
+    .jump span { opacity: .8; }
+
+    /* Cards for research areas and projects */
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      display: flex; flex-direction: column;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; transition: border-color .15s, transform .15s;
+    }
+    .card:hover { border-color: var(--red); transform: translateY(-2px); }
+    .card h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.25; }
+    .card .q { font-family: var(--serif); font-style: italic; color: var(--red); margin: 0 0 10px; font-size: 16.5px; }
+    .card p { margin: 0 0 16px; font-size: 15.5px; }
+    .card .meta {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--grey); margin: 0 0 10px;
+    }
+    .card .aside { margin: 0 0 16px; padding-left: 12px; border-left: 2px solid var(--red); font-size: 15px; }
+    .more {
+      margin-top: auto; align-self: flex-start;
+      border: 1px solid var(--red); border-radius: 999px; color: var(--red);
+      text-decoration: none; padding: 8px 16px; font-size: 14px; font-weight: 600;
+      transition: background .15s, color .15s;
+    }
+    .more:hover { background: var(--red); color: #fff; }
+
+    @media (max-width: 900px) { .jumps, .cards { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .jumps, .cards { grid-template-columns: 1fr; } }
 
 
     /* --------------------------------------------------------------------
@@ -329,6 +421,7 @@
     .person:first-of-type { border-top: 1px solid var(--line); }
 
     .photo {
+      border-radius: var(--radius);
       width: 72px;
       height: 72px;
       background: var(--light);
@@ -456,8 +549,12 @@
       }
       body          { background: #17171a; }
       body::before  { opacity: .85; mix-blend-mode: lighten; }
+      body::after   { opacity: .55; }   /* the monogram needs less weight on dark */
       header        { background: rgba(23, 23, 26, .94); }
       .button       { color: #17171a; }
+      .card         { background: #201e22; }
+      .jump         { background: #2b1218; }
+      .jump:hover   { background: #3a1820; }
       .button:hover { background: #f4f2ef; color: #17171a; }
       th            { border-bottom-color: var(--grey); }
     }
@@ -521,20 +618,15 @@
        The heading is the question the proposed site is organised around.
        The record line says what this is and when it last changed.
        ====================================================================== -->
-  <section class="hero" id="top">
+  <section class="banner" id="top">
     <div class="container">
 
-      <p class="label">AIDX Lab — AI for Decision Excellence</p>
+      <p class="crumbs">Australian Catholic University / Research / AIDX Lab</p>
 
       <h1>How should organisations decide when the data is incomplete?</h1>
 
       <p>AIDX Lab — AI for Decision Excellence — is a research group in the Faculty of Law
       and Business at Australian Catholic University.</p>
-
-      <div class="actions">
-        <a class="button" href="#join">Join the lab</a>
-        <a class="quiet" href="#research">Research areas ↓</a>
-      </div>
 
       <!-- Keep this line accurate. Change the date when you change the page. -->
       <p class="record">
@@ -547,6 +639,20 @@
     </div>
   </section>
 
+  <!-- ======================================================================
+       JUMP BUTTONS
+       Four shortcuts to the sections below. Add or remove one by copying
+       an <a class="jump"> line.
+       ====================================================================== -->
+  <div class="container">
+    <div class="jumps">
+      <a class="jump" href="#research">Research areas <span>&rarr;</span></a>
+      <a class="jump" href="#projects">Projects <span>&rarr;</span></a>
+      <a class="jump" href="#people">People <span>&rarr;</span></a>
+      <a class="jump" href="#join">Join the lab <span>&rarr;</span></a>
+    </div>
+  </div>
+
 
   <!-- ======================================================================
        RESEARCH AREAS
@@ -557,46 +663,38 @@
        ====================================================================== -->
   <section id="research">
     <div class="container">
-      <div class="cols">
+      <div class="cols wide">
 
         <p class="label">Research</p>
 
         <div>
           <h2>Research areas</h2>
 
-          <div class="index">
+          <!-- TO ADD ONE: copy a whole <article class="card"> … </article> block -->
+          <div class="cards">
 
-            <article class="entry">
-              <span class="num">01</span>
-              <div>
-                <h3>Trustworthy AI Agents</h3>
-                <p class="question">When can an AI agent be trusted to use tools independently?</p>
-                <p>We explore how tool permissions, action logs and resource limits affect the
-                reliability of AI agents.</p>
-                <p class="jump"><a href="#project-agent-tools">Project: can an agent be trusted with real tools?</a></p>
-              </div>
+            <article class="card">
+              <h3>Trustworthy AI Agents</h3>
+              <p class="q">When can an AI agent be trusted to use tools independently?</p>
+              <p>We explore how tool permissions, action logs and resource limits affect the
+              reliability of AI agents.</p>
+              <a class="more" href="#project-agent-tools">Learn more</a>
             </article>
 
-            <article class="entry">
-              <span class="num">02</span>
-              <div>
-                <h3>AI Security</h3>
-                <p class="question">How can misleading inputs affect a chain of AI agents?</p>
-                <p>We investigate how harmful instructions spread between agents and which
-                safeguards can limit their effects.</p>
-                <p class="jump"><a href="#project-poisoned-input">Project: how far does a poisoned input travel?</a></p>
-              </div>
+            <article class="card">
+              <h3>AI Security</h3>
+              <p class="q">How can misleading inputs affect a chain of AI agents?</p>
+              <p>We investigate how harmful instructions spread between agents and which
+              safeguards can limit their effects.</p>
+              <a class="more" href="#project-poisoned-input">Learn more</a>
             </article>
 
-            <article class="entry">
-              <span class="num">03</span>
-              <div>
-                <h3>Human–AI Decision Making</h3>
-                <p class="question">Do AI explanations help people make better decisions?</p>
-                <p>We examine whether explanations improve decisions or mainly change people's
-                confidence.</p>
-                <p class="jump"><a href="#project-explanations">Project: does an explanation change the decision?</a></p>
-              </div>
+            <article class="card">
+              <h3>Human–AI Decision Making</h3>
+              <p class="q">Do AI explanations help people make better decisions?</p>
+              <p>We examine whether explanations improve decisions or mainly change people's
+              confidence.</p>
+              <a class="more" href="#project-explanations">Learn more</a>
             </article>
 
           </div>
@@ -615,52 +713,44 @@
        ====================================================================== -->
   <section id="projects">
     <div class="container">
-      <div class="cols">
+      <div class="cols wide">
 
         <p class="label">Projects</p>
 
         <div>
           <h2>Projects</h2>
 
-          <div class="index">
+          <!-- TO ADD ONE: copy a whole <article class="card"> … </article> block.
+               The id is what the research cards link to. -->
+          <div class="cards">
 
-            <article class="entry" id="project-agent-tools">
-              <span class="num">01</span>
-              <div>
-                <h3>Can an agent be trusted with real tools?</h3>
-                <p class="meta">Honours / Summer intern · Sample supervisor profile · <b>Sample project</b></p>
-                <p>Give an agent a small set of real tools and a budget, then log every step to
-                see where it goes wrong when nobody is checking.</p>
-                <p class="aside">A student would build the sandbox and compare how two agents
-                spend the same budget.</p>
-                <p class="jump"><a href="#research">Research area: Trustworthy AI Agents</a></p>
-              </div>
+            <article class="card" id="project-agent-tools">
+              <h3>Can an agent be trusted with real tools?</h3>
+              <p class="meta">Honours / Summer intern · Sample supervisor profile · Sample project</p>
+              <p>Give an agent a small set of real tools and a budget, then log every step to
+              see where it goes wrong when nobody is checking.</p>
+              <p class="aside">A student would build the sandbox and compare how two agents
+              spend the same budget.</p>
+              <a class="more" href="#research">Trustworthy AI Agents</a>
             </article>
 
-            <article class="entry" id="project-poisoned-input">
-              <span class="num">02</span>
-              <div>
-                <h3>How far does a poisoned input travel?</h3>
-                <p class="meta">Honours / PhD · Sample supervisor profile · <b>Sample project</b></p>
-                <p>One bad input goes into a chain of agents that trust each other. The project
-                measures how many steps it survives, and what stops it.</p>
-                <p class="aside">A student would write the test cases and turn the results into
-                a dataset.</p>
-                <p class="jump"><a href="#research">Research area: AI Security</a></p>
-              </div>
+            <article class="card" id="project-poisoned-input">
+              <h3>How far does a poisoned input travel?</h3>
+              <p class="meta">Honours / PhD · Sample supervisor profile · Sample project</p>
+              <p>One bad input goes into a chain of agents that trust each other. The project
+              measures how many steps it survives, and what stops it.</p>
+              <p class="aside">A student would write the test cases and turn the results into
+              a dataset.</p>
+              <a class="more" href="#research">AI Security</a>
             </article>
 
-            <article class="entry" id="project-explanations">
-              <span class="num">03</span>
-              <div>
-                <h3>Does an explanation change the decision?</h3>
-                <p class="meta">Honours · Sample supervisor profile · <b>Sample project</b></p>
-                <p>People make the same decision with and without an AI explanation. The project
-                looks at whether the explanation changes the choice, or only their confidence
-                in it.</p>
-                <p class="aside">A student would run the sessions and analyse the results.</p>
-                <p class="jump"><a href="#research">Research area: Human–AI Decision Making</a></p>
-              </div>
+            <article class="card" id="project-explanations">
+              <h3>Does an explanation change the decision?</h3>
+              <p class="meta">Honours · Sample supervisor profile · Sample project</p>
+              <p>People make the same decision with and without an AI explanation. The project
+              looks at whether the explanation changes the choice, or only their confidence.</p>
+              <p class="aside">A student would run the sessions and analyse the results.</p>
+              <a class="more" href="#research">Human–AI Decision Making</a>
             </article>
 
           </div>
