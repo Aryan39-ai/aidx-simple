@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   ===========================================================================
-  AIDX LAB — one-page research site
+  AIDX LAB — student website prototype
   ===========================================================================
 
   WHAT IS IN THIS FILE, IN ORDER:
@@ -17,6 +17,10 @@
   LAYOUT IDEA: most sections are two columns — a small label on the left,
   the content on the right. Lists are numbered rows separated by rules,
   like a research index, rather than boxes.
+
+  HONESTY RULE: everything on this page is sample content for a student
+  prototype. Do not write anything that claims a real person, result,
+  outcome or review unless it is verified. See the Method section.
   ===========================================================================
 -->
 <html lang="en">
@@ -30,8 +34,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Shown in the browser tab, and as the headline in Google results -->
-  <title>AIDX Lab — AI for Decision Excellence, ACU</title>
-  <meta name="description" content="AIDX Lab researches AI for decision-making at Australian Catholic University. Open projects, how to apply, and where our past students went next.">
+  <title>AIDX Lab website prototype — student project, ACU</title>
+  <meta name="description" content="A student website prototype for a university research lab. Sample research areas, example projects and a proposed website comparison. Not official AIDX Lab information.">
 
   <style>
     /* ====================================================================
@@ -76,6 +80,12 @@
     h1, h2, h3 { font-family: var(--serif); color: var(--black); font-weight: 700; }
     a { color: var(--red); }
 
+    /* Anyone using a keyboard can see where they are */
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+    }
+
     /* Holds everything in a centred column */
     .container { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
 
@@ -88,6 +98,18 @@
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--grey);
+    }
+
+    /* Marks sample content, so nothing on the page looks verified */
+    .sample {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      white-space: nowrap;
     }
 
 
@@ -109,7 +131,8 @@
       font-family: var(--mono);
       font-size: 11.5px;
       letter-spacing: .04em;
-      padding: 7px 0;
+      line-height: 1.5;
+      padding: 8px 0;
     }
 
 
@@ -157,8 +180,8 @@
 
     /* --------------------------------------------------------------------
        2.6  TOP OF THE PAGE
-       Left-aligned and narrow on purpose: the question, a short
-       description, then a record line saying where the project is up to.
+       Left-aligned and narrow on purpose: the question the proposed lab
+       site is built around, then a record line about the prototype.
        -------------------------------------------------------------------- */
     .hero { padding: 72px 0 56px; border-top: 0; }
 
@@ -169,7 +192,7 @@
       margin: 14px 0 20px;
       max-width: 19ch;
     }
-    .hero p { font-size: 19px; max-width: 54ch; margin: 0 0 26px; }
+    .hero p { font-size: 19px; max-width: 56ch; margin: 0 0 26px; }
 
     /* One action, with one quiet link beside it */
     .actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
@@ -194,7 +217,7 @@
     }
     .quiet:hover { color: var(--black); }
 
-    /* The record line: status, semester, version, last updated */
+    /* The record line: what this is, which unit, when it was last changed */
     .record {
       display: flex;
       flex-wrap: wrap;
@@ -240,6 +263,9 @@
     }
     .entry .meta b { color: var(--red); font-weight: 400; }
 
+    /* The question an area is asking */
+    .question { font-family: var(--serif); font-size: 17.5px; color: var(--black); font-style: italic; }
+
     /* An aside inside an entry: what a student would actually do */
     .aside {
       margin: 10px 0 0;
@@ -248,6 +274,9 @@
       font-size: 15.5px;
       max-width: 60ch;
     }
+
+    /* Link from a research area down to its example project */
+    .jump { font-size: 15px; }
 
 
     /* --------------------------------------------------------------------
@@ -291,8 +320,8 @@
 
 
     /* --------------------------------------------------------------------
-       2.9  TABLES  (past members, requirements, the method table)
-       "blank" marks a number that is not confirmed yet.
+       2.9  TABLES  (sample alumni, requirements, design rationale)
+       Tables scroll on their own so the page never scrolls sideways.
        -------------------------------------------------------------------- */
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; min-width: 380px; }
@@ -317,7 +346,29 @@
 
 
     /* --------------------------------------------------------------------
-       2.10  THE FOUR STEPS under "How to apply"
+       2.10  DISCLOSURE  (the "planned comparison" drop-down)
+       Uses the browser's own details/summary, so it works without script.
+       -------------------------------------------------------------------- */
+    details {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 24px 0 0;
+      padding: 14px 0;
+    }
+    summary {
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    details[open] summary { margin-bottom: 14px; }
+    details p, details ol, details ul { max-width: 62ch; font-size: 16px; }
+
+
+    /* --------------------------------------------------------------------
+       2.11  THE FOUR STEPS under "How an application would work"
        A numbered list with hanging numbers, not four equal boxes.
        -------------------------------------------------------------------- */
     .steps { list-style: none; margin: 0; padding: 0; max-width: 62ch; }
@@ -331,15 +382,15 @@
 
 
     /* --------------------------------------------------------------------
-       2.11  FOOTER
+       2.12  FOOTER
        -------------------------------------------------------------------- */
     footer { padding: 34px 0 48px; border-top: 1px solid var(--line); }
-    footer p { margin: 0 0 6px; font-size: 14px; color: var(--grey); }
+    footer p { margin: 0 0 6px; font-size: 14px; color: var(--grey); max-width: 70ch; }
     footer .label { display: block; margin-bottom: 10px; }
 
 
     /* --------------------------------------------------------------------
-       2.12  PHONES  (screens narrower than 720 pixels)
+       2.13  PHONES  (screens narrower than 720 pixels)
        The label column moves above the content instead of beside it.
        -------------------------------------------------------------------- */
     @media (max-width: 720px) {
@@ -354,7 +405,7 @@
 
 
     /* --------------------------------------------------------------------
-       2.13  DARK MODE
+       2.14  DARK MODE
        Follows the visitor's own computer setting. Colours only.
        -------------------------------------------------------------------- */
     @media (prefers-color-scheme: dark) {
@@ -376,7 +427,7 @@
 
 
     /* --------------------------------------------------------------------
-       2.14  REDUCED MOTION
+       2.15  REDUCED MOTION
        Some people set their computer to limit animation. Respect it.
        -------------------------------------------------------------------- */
     @media (prefers-reduced-motion: reduce) {
@@ -395,11 +446,11 @@
 
   <!-- ======================================================================
        PROTOTYPE STRIP
-       DELETE this whole block once the content is real.
+       Keep this until the content is real and verified.
        ====================================================================== -->
   <div class="notice">
     <div class="container">
-      Prototype — people, projects and papers below are sample content, not real AIDX Lab information
+      Student website prototype. Research areas, projects, people and outcomes are illustrative and are not verified AIDX Lab information.
     </div>
   </div>
 
@@ -418,7 +469,7 @@
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
         <a href="#people">People</a>
-        <a href="#join">Join us</a>
+        <a href="#join">Joining</a>
         <a href="#contact">Contact</a>
         <a href="#why">Method</a>
       </nav>
@@ -429,30 +480,32 @@
 
   <!-- ======================================================================
        TOP OF THE PAGE
-       The heading is the question the lab is trying to answer. The record
-       line underneath says where the project is up to.
+       The heading is the question the proposed site is organised around.
+       The record line says what this is and when it last changed.
        ====================================================================== -->
   <section class="hero" id="top">
     <div class="container">
 
-      <p class="label">AIDX Lab — AI for Decision Excellence</p>
+      <p class="label">Student prototype — proposed website for AIDX Lab</p>
 
       <h1>How should organisations decide when the data is incomplete?</h1>
 
-      <p>A research group in the Faculty of Law and Business at Australian Catholic
-      University, working on decisions made where the evidence is partial, late or contested.</p>
+      <p>This is a proposed website for AIDX Lab (AI for Decision Excellence), a research
+      group in the Faculty of Law and Business at Australian Catholic University. It was
+      built as a student project to test how a lab site could present its research,
+      projects and study opportunities. The content below is illustrative.</p>
 
       <div class="actions">
-        <a class="button" href="#join">Join the lab</a>
-        <a class="quiet" href="#research">Read the research ↓</a>
+        <a class="button" href="#join">See the example joining process</a>
+        <a class="quiet" href="#research">Read the research areas ↓</a>
       </div>
 
-      <!-- Project record. Keep these honest, and update them as things change. -->
+      <!-- Keep this line accurate. Change the date when you change the page. -->
       <p class="record">
-        <span>Status <b>Active</b></span>
-        <span>Semester 2, 2026</span>
-        <span>Site prototype v0.4</span>
-        <span>Updated October 2026</span>
+        <span>Status <b>Prototype</b></span>
+        <span>Not an official ACU site</span>
+        <span>Student project, ITEC320</span>
+        <span>Last updated October 2026</span>
       </p>
 
     </div>
@@ -462,8 +515,9 @@
   <!-- ======================================================================
        RESEARCH AREAS
 
+       Three proposed areas, each matching one example project further down.
        TO ADD ONE: copy a whole <article class="entry"> … </article> block,
-       paste it below, and change the number and the words.
+       change the number and the words, and point the link at a project id.
        ====================================================================== -->
   <section id="research">
     <div class="container">
@@ -472,17 +526,44 @@
         <p class="label">Research</p>
 
         <div>
-          <h2>What we are trying to answer</h2>
-          <p class="lead-in">Each area is written as a question rather than a topic, so it is
-          clear what the work is for.</p>
+          <h2>Proposed research areas</h2>
+          <p class="lead-in">Three areas a lab site like this could be organised around. Each is
+          written as a question rather than a topic, and each links to an example project
+          showing the kind of work it would involve. These are proposals for the prototype,
+          not a record of work already carried out.</p>
 
           <div class="index">
 
             <article class="entry">
               <span class="num">01</span>
               <div>
-                <h3>Decision Science</h3>
-                <p>How do complex organizations make choices under extreme uncertainty?</p>
+                <h3>Trustworthy AI Agents</h3>
+                <p class="question">When can an AI agent be trusted to use tools independently?</p>
+                <p>We explore how tool permissions, action logs and resource limits affect the
+                reliability of AI agents.</p>
+                <p class="jump"><a href="#project-agent-tools">Example project: can an agent be trusted with real tools?</a></p>
+              </div>
+            </article>
+
+            <article class="entry">
+              <span class="num">02</span>
+              <div>
+                <h3>AI Security</h3>
+                <p class="question">How can misleading inputs affect a chain of AI agents?</p>
+                <p>We investigate how harmful instructions spread between agents and which
+                safeguards can limit their effects.</p>
+                <p class="jump"><a href="#project-poisoned-input">Example project: how far does a poisoned input travel?</a></p>
+              </div>
+            </article>
+
+            <article class="entry">
+              <span class="num">03</span>
+              <div>
+                <h3>Human–AI Decision Making</h3>
+                <p class="question">Do AI explanations help people make better decisions?</p>
+                <p>We examine whether explanations improve decisions or mainly change people's
+                confidence.</p>
+                <p class="jump"><a href="#project-explanations">Example project: does an explanation change the decision?</a></p>
               </div>
             </article>
 
@@ -495,10 +576,10 @@
 
 
   <!-- ======================================================================
-       OPEN PROJECTS
+       EXAMPLE PROJECTS
 
-       The line with the red bar beside it says what a student would do.
-       TO ADD ONE: copy a whole <article class="entry"> … </article> block.
+       Each project has its own id so the research areas can link to it.
+       The line with the red bar says what a student would do.
        ====================================================================== -->
   <section id="projects">
     <div class="container">
@@ -507,43 +588,49 @@
         <p class="label">Projects</p>
 
         <div>
-          <h2>Open projects</h2>
-          <p class="lead-in">Work a student could pick up now. Each one is a question we are
-          trying to answer, not a topic area.</p>
+          <h2>Example projects</h2>
+          <p class="lead-in">Three worked examples showing how a project could be described on
+          this kind of site: the question, who would supervise it, and what a student would
+          actually do. The projects and supervisor names are sample content.</p>
 
           <div class="index">
 
-            <article class="entry">
+            <article class="entry" id="project-agent-tools">
               <span class="num">01</span>
               <div>
                 <h3>Can an agent be trusted with real tools?</h3>
-                <p class="meta">Honours / Summer intern · Supervisor S. Aryan · <b>Open</b></p>
+                <p class="meta">Honours / Summer intern · Sample supervisor profile · <b>Sample project</b></p>
                 <p>Give an agent a small set of real tools and a budget, then log every step to
                 see where it goes wrong when nobody is checking.</p>
-                <p class="aside">You would build the sandbox and compare how two agents spend the
-                same budget.</p>
+                <p class="aside">A student would build the sandbox and compare how two agents
+                spend the same budget.</p>
+                <p class="jump"><a href="#research">Research area: Trustworthy AI Agents</a></p>
               </div>
             </article>
 
-            <article class="entry">
+            <article class="entry" id="project-poisoned-input">
               <span class="num">02</span>
               <div>
                 <h3>How far does a poisoned input travel?</h3>
-                <p class="meta">Honours / PhD · Supervisor A. Arjun · <b>Open</b></p>
-                <p>One bad input goes into a chain of agents that trust each other. We measure how
-                many steps it survives, and what stops it.</p>
-                <p class="aside">You would write the test cases and turn the results into a dataset.</p>
+                <p class="meta">Honours / PhD · Sample supervisor profile · <b>Sample project</b></p>
+                <p>One bad input goes into a chain of agents that trust each other. The project
+                measures how many steps it survives, and what stops it.</p>
+                <p class="aside">A student would write the test cases and turn the results into
+                a dataset.</p>
+                <p class="jump"><a href="#research">Research area: AI Security</a></p>
               </div>
             </article>
 
-            <article class="entry">
+            <article class="entry" id="project-explanations">
               <span class="num">03</span>
               <div>
                 <h3>Does an explanation change the decision?</h3>
-                <p class="meta">Honours · Supervisor S. Aryan · <b>Open</b></p>
-                <p>People make the same decision with and without an AI explanation. We look at
-                whether the explanation changes the choice, or only their confidence in it.</p>
-                <p class="aside">You would run the sessions and analyse the results.</p>
+                <p class="meta">Honours · Sample supervisor profile · <b>Sample project</b></p>
+                <p>People make the same decision with and without an AI explanation. The project
+                looks at whether the explanation changes the choice, or only their confidence
+                in it.</p>
+                <p class="aside">A student would run the sessions and analyse the results.</p>
+                <p class="jump"><a href="#research">Research area: Human–AI Decision Making</a></p>
               </div>
             </article>
 
@@ -556,11 +643,10 @@
 
 
   <!-- ======================================================================
-       PEOPLE
+       PEOPLE — sample profiles
 
-       TO ADD SOMEONE: copy a whole <article class="person"> … </article>
-       block. For a photo, replace <div class="photo">XX</div> with
-       <img class="photo" src="your-photo.jpg" alt="Photo of …">
+       These are invented profiles used to show the layout. Do not add a
+       real person here without their permission and correct details.
        ====================================================================== -->
   <section id="people">
     <div class="container">
@@ -569,27 +655,30 @@
         <p class="label">People</p>
 
         <div>
-          <h2>Who is here</h2>
-          <p class="lead-in">Everyone writes their own description. The line in red is their
-          path — where they studied, and where they are now.</p>
+          <h2>How people would be shown</h2>
+          <p class="lead-in">Two sample profiles, written the way real ones would be: a short
+          description in the person's own words, and the path that brought them here. Both
+          profiles below are invented for the prototype.</p>
 
           <article class="person">
-            <img class="photo" src="IMG_4031.jpeg" alt="Photo of S. Aryan">
+            <img class="photo" src="IMG_4031.jpeg" alt="Placeholder photo used in the prototype">
             <div>
-              <h3>S. Aryan</h3>
-              <p class="role">PhD Candidate</p>
-              <p>Engineering trust out of autonomous systems, one exploit at a time.</p>
-              <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+              <h3>S. Aryan <span class="sample">Sample profile</span></h3>
+              <p class="role">Example role — PhD candidate</p>
+              <p>Example description: “Engineering trust out of autonomous systems, one exploit
+              at a time.”</p>
+              <p class="path">Example path: BEng → MSc Security → research lab</p>
             </div>
           </article>
 
           <article class="person">
             <div class="photo">AA</div>
             <div>
-              <h3>A. Arjun</h3>
-              <p class="role">PhD Candidate</p>
-              <p>Securing AI isn't about building stronger walls; it's about teaching agents not to open the door.</p>
-              <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+              <h3>A. Arjun <span class="sample">Sample profile</span></h3>
+              <p class="role">Example role — PhD candidate</p>
+              <p>Example description: “Securing AI isn't about building stronger walls; it's
+              about teaching agents not to open the door.”</p>
+              <p class="path">Example path: BEng → MSc Security → research lab</p>
             </div>
           </article>
 
@@ -601,8 +690,8 @@
 
 
   <!-- ======================================================================
-       PAST MEMBERS
-       TO ADD A ROW: copy one <tr> … </tr> line.
+       ALUMNI — sample outcomes
+       Invented examples showing the layout, not real destinations.
        ====================================================================== -->
   <section id="alumni">
     <div class="container">
@@ -611,17 +700,18 @@
         <p class="label">Alumni</p>
 
         <div>
-          <h2>Where past members went next</h2>
-          <p class="lead-in">People who finish here stay on the site. A student weighing up three
-          or four years wants to know what happens afterwards.</p>
+          <h2>How past members would be shown</h2>
+          <p class="lead-in">A lab could keep people on the site after they finish, with the
+          kind of role they moved into. The rows below are invented examples of that layout,
+          not real people or real destinations.</p>
 
           <div class="table-wrap">
-          <table>
-            <tr><th>Name</th><th>Here as</th><th>Went on to</th></tr>
-            <tr><td>M. Halloran</td><td>Honours, 2025–2026</td><td>PhD candidate, Go8 university</td></tr>
-            <tr><td>K. Sandhu</td><td>PhD, 2022–2026</td><td>Research Scientist, industry lab</td></tr>
-            <tr><td>E. Vasquez</td><td>Summer intern, 2025</td><td>ML Engineer, startup</td></tr>
-          </table>
+            <table>
+              <tr><th>Example name</th><th>Example role here</th><th>Example next step</th></tr>
+              <tr><td>Sample A</td><td>Honours student</td><td>PhD candidate</td></tr>
+              <tr><td>Sample B</td><td>PhD candidate</td><td>Research scientist</td></tr>
+              <tr><td>Sample C</td><td>Summer intern</td><td>Machine learning engineer</td></tr>
+            </table>
           </div>
         </div>
 
@@ -631,50 +721,49 @@
 
 
   <!-- ======================================================================
-       JOIN US
-       The two grey rows stay blank until the faculty confirms the real
-       numbers. A blank is better than a guess.
+       JOINING — an example process
+
+       Nothing here collects documents or promises a reply. It shows what
+       a joining section could contain once the Lab confirms the details.
        ====================================================================== -->
   <section id="join">
     <div class="container">
       <div class="cols">
 
-        <p class="label">Join us</p>
+        <p class="label">Joining</p>
 
         <div>
-          <h2>Join the lab</h2>
-          <p class="lead-in">There is no closing date. We take Honours, Masters, PhD and
-          placement students, and we read applications all year.</p>
+          <h2>Example joining process</h2>
+          <p class="lead-in">This section demonstrates how a lab could explain study
+          opportunities. It is an example only — applications cannot be made through this
+          prototype.</p>
 
-          <h3>What we ask for</h3>
+          <h3>What a requirements table could show</h3>
           <div class="table-wrap">
-          <table>
-            <tr class="blank"><td>Marks</td><td>Placeholder — confirm with the faculty</td></tr>
-            <tr class="blank"><td>English</td><td>Placeholder — confirm ACU's requirement</td></tr>
-            <tr><td>Publications</td><td>Not needed for Honours. Helpful for PhD.</td></tr>
-            <tr><td>Deadline</td><td>None. We read applications all year.</td></tr>
-          </table>
+            <table>
+              <tr class="blank"><td>Marks</td><td>Entry requirements would be confirmed with the relevant faculty</td></tr>
+              <tr class="blank"><td>English</td><td>Language requirements would be confirmed with the relevant faculty</td></tr>
+              <tr class="blank"><td>Publications</td><td>Expectations would differ by level and would be confirmed with the supervisor</td></tr>
+              <tr class="blank"><td>Timing</td><td>Application periods would be confirmed with the faculty</td></tr>
+            </table>
           </div>
 
-          <h3>What to send</h3>
+          <h3>What an enquiry would usually include</h3>
           <ul class="plain">
-            <li>Your CV</li>
-            <li>Your academic transcript</li>
-            <li>A short note naming two or three research areas you like</li>
-            <li>A code sample, report or poster</li>
+            <li>A short note naming one or two research areas of interest</li>
+            <li>A summary of relevant study or project experience</li>
+            <li>A link to work the student is willing to share publicly</li>
           </ul>
+          <p>Documents such as transcripts would be requested later through the university's
+          own application system, not through a website.</p>
 
-          <h3>How to apply</h3>
+          <h3>How an application would work</h3>
           <ol class="steps">
             <li><span class="n">01</span><b>Explore.</b> Read the research areas.</li>
-            <li><span class="n">02</span><b>Choose.</b> Pick one that interests you.</li>
-            <li><span class="n">03</span><b>Prepare.</b> Get the four things above ready.</li>
-            <li><span class="n">04</span><b>Apply.</b> Email us.</li>
+            <li><span class="n">02</span><b>Choose.</b> Pick the area closest to your interests.</li>
+            <li><span class="n">03</span><b>Prepare.</b> Write the short note described above.</li>
+            <li><span class="n">04</span><b>Enquire.</b> Contact the lab once contact details are confirmed.</li>
           </ol>
-
-          <h3>What happens after you email</h3>
-          <p>We reply within about a week. If the fit looks right, we set up a 20-minute chat to
-          talk through the project before anything formal starts. You will not be left wondering.</p>
         </div>
 
       </div>
@@ -684,10 +773,7 @@
 
   <!-- ======================================================================
        CONTACT
-
-       The long code after "mailto:" fills in the subject and a checklist
-       when someone clicks the address. To change the address, edit the
-       part between "mailto:" and the "?".
+       No address is published until a verified one is supplied.
        ====================================================================== -->
   <section id="contact">
     <div class="container">
@@ -697,11 +783,8 @@
 
         <div>
           <h2>Contact</h2>
-          <p>
-            <a href="mailto:placeholder@acu.edu.au?subject=Research%20enquiry&amp;body=Hello%2C%0A%0AI%20am%20interested%20in%3A%20%5Bproject%20or%20research%20area%5D%0A%0AAttached%3A%0A-%20CV%0A-%20Transcript%0A-%20A%20short%20note%20on%20why%20this%20area%0A-%20A%20code%20sample%2C%20report%20or%20poster%0A%0AThank%20you%2C%0A">placeholder [at] acu.edu.au</a>
-            — clicking the address opens an email with the subject and checklist filled in.
-          </p>
-          <p>Faculty of Law and Business, Australian Catholic University, North Sydney Campus.</p>
+          <p>Contact details pending verification.</p>
+          <p>This prototype does not send messages or collect personal information.</p>
         </div>
 
       </div>
@@ -710,10 +793,12 @@
 
 
   <!-- ======================================================================
-       METHOD — why the site is built this way
+       METHOD — why the page is built this way
 
-       Each row: what the review of ten Australian lab websites found, what
-       this site does about it, and where it was seen.
+       NOTE: the website comparison has not been carried out yet, so no
+       counts or site names are published here. Fill in
+       website-comparison-template.csv first, then the evidence can be
+       summarised in this section.
        ====================================================================== -->
   <section id="why">
     <div class="container">
@@ -722,21 +807,59 @@
         <p class="label">Method</p>
 
         <div>
-          <h2>Why this site looks like this</h2>
-          <p class="lead-in">The structure came from a review of ten Australian university
-          research-lab websites. Every choice below traces back to that review.</p>
+          <h2>Why this prototype is built this way</h2>
+          <p class="lead-in">The design choices below are the student's reasoning for this
+          prototype. A structured comparison of university lab websites is planned but has not
+          been completed, so no findings or counts are presented as evidence yet.</p>
 
           <div class="table-wrap">
-          <table>
-            <tr><th>What the review found</th><th>What this site does</th><th>Seen in</th></tr>
-            <tr><td>Every lab is competing for students</td><td>&ldquo;Join the lab&rdquo; is the only solid button on the page</td><td>9 of 10 sites</td></tr>
-            <tr><td>Entry requirements were vague or missing</td><td>A requirements table, with blanks where the number is not confirmed</td><td>1 of 10 sites did this well</td></tr>
-            <tr><td>People listed as a name and a job title</td><td>Each person is written as a path, in their own words</td><td>Melbourne</td></tr>
-            <tr><td>Past members deleted when they leave</td><td>An outcomes table showing where they went next</td><td>Curtin</td></tr>
-            <tr><td>News pages that stopped years ago</td><td>No news page at all, so nothing can go stale</td><td>4 of 10 sites had dead pages</td></tr>
-            <tr><td>Nine sections, most of them empty</td><td>One page that can be read in two minutes</td><td>6 of 10 sites</td></tr>
-          </table>
+            <table>
+              <tr><th>Design choice</th><th>Reason</th></tr>
+              <tr><td>One joining action, styled as the only solid button</td><td>Study opportunities are the information a prospective student is usually looking for, so the page keeps a single clear route to it</td></tr>
+              <tr><td>Requirements shown as a table with unconfirmed values left blank</td><td>An unconfirmed number on a university page is worse than an obvious gap</td></tr>
+              <tr><td>Each person described in their own words, with their path</td><td>A short description tells a prospective student more about fit than a job title</td></tr>
+              <tr><td>Past members kept, with the role they moved into</td><td>A student choosing several years of study wants to know what tends to follow</td></tr>
+              <tr><td>No news feed</td><td>A page that depends on regular updates becomes misleading when updates stop</td></tr>
+              <tr><td>One page instead of many sections</td><td>A short page can be kept accurate by one person without specialist tools</td></tr>
+            </table>
           </div>
+
+          <details>
+            <summary>Planned website comparison — not yet carried out</summary>
+
+            <p>The intention is to review a small set of Australian university research-lab
+            websites and record how each one handles the information a prospective student
+            needs. Nothing from this review appears on the page until it is done and checked.</p>
+
+            <p><b>Proposed criteria.</b> Each site would be recorded against the same ten
+            questions:</p>
+            <ol>
+              <li>Is the lab's purpose clear?</li>
+              <li>Are research areas explained?</li>
+              <li>Are student projects described?</li>
+              <li>Are entry requirements available?</li>
+              <li>Is the application process clear?</li>
+              <li>Are people and their roles easy to understand?</li>
+              <li>Are alumni outcomes shown?</li>
+              <li>Is the information current?</li>
+              <li>Does the site work on mobile?</li>
+              <li>Can the navigation be used with a keyboard?</li>
+            </ol>
+
+            <p><b>How sites would be selected.</b> Publicly available websites of Australian
+            university research groups in computing or information technology, chosen to cover
+            different universities and group sizes. The selection would be purposive rather
+            than random.</p>
+
+            <p><b>Limitations.</b> A small purposive sample cannot describe university websites
+            generally. Each site would be judged by one reviewer at one point in time, and
+            websites change. The findings would support design decisions for this prototype
+            only.</p>
+
+            <p><b>Recording.</b> Observations would be entered in
+            <code>website-comparison-template.csv</code> in this project, with the review date
+            and a link for each site, so any count on this page can be traced back to a row.</p>
+          </details>
         </div>
 
       </div>
@@ -749,9 +872,11 @@
        ====================================================================== -->
   <footer>
     <div class="container">
-      <p class="label">AIDX Lab · Australian Catholic University</p>
-      <p>© 2026 AIDX Lab, Australian Catholic University. Site prototype v0.4, updated October 2026.</p>
-      <p>[Paste ACU's official Acknowledgement of Country here.]</p>
+      <p class="label">Student website prototype</p>
+      <p>Built by a student at Australian Catholic University for ITEC320 Work Integrated
+      Learning, Semester 2, 2026. This page is not published, endorsed or maintained by
+      Australian Catholic University or by AIDX Lab, and the content is illustrative.</p>
+      <p>Last updated October 2026.</p>
     </div>
   </footer>
 

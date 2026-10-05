@@ -40,3 +40,16 @@ double-click the file to see it in your browser.
 - [ ] Delete the prototype notice
 
 <!-- publish test -->
+
+## Website comparison (not done yet)
+
+`website-comparison-template.csv` is an empty recording sheet for the planned
+review of university research-lab websites. One row per site.
+
+Each of the ten criteria columns takes `yes`, `partly`, `no` or `unclear`, and
+`notes` is for anything that needs explaining.
+
+**Rule:** no number, count or finding goes on the public page until it can be
+traced back to a filled-in row with a date and a link. Until then the Method
+section only explains the design reasoning, and the planned review is clearly
+labelled as not yet carried out.
