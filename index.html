@@ -77,7 +77,12 @@
       font-size: 17.5px;
       line-height: 1.68;
       color: var(--text);
-      background: #fcfbf9;          /* warm paper, not pure white */
+      /* The monogram and the paper grain sit on the page itself, so they
+         scroll with everything else rather than staying put. */
+      background-color: #fcfbf9;    /* warm paper, not pure white */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%237b1e2b' opacity='.05'%3EAIDX%3C/text%3E%3C/svg%3E"),
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.22'/%3E%3C/svg%3E");
+      background-repeat: repeat, repeat;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       font-variant-numeric: oldstyle-num;   /* numerals that sit in the line */
@@ -87,38 +92,7 @@
     ::selection { background: #f0dfe2; color: #17161a; }
 
 
-    /* --------------------------------------------------------------------
-       AIDX MONOGRAM, TILED
-       The lab's own initials, small and on the diagonal, repeating behind
-       the page. Drawn from the SVG below — no image file. Sits behind
-       everything and ignores clicks. Raise the opacity in the SVG to make
-       it more visible, lower it to make it quieter.
-       -------------------------------------------------------------------- */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%237b1e2b' opacity='.05'%3EAIDX%3C/text%3E%3C/svg%3E");
-      background-repeat: repeat;
-    }
 
-    /* --------------------------------------------------------------------
-       PAPER GRAIN
-       A fine speckle over the whole page, drawn by the browser from the
-       small SVG below. No image file, nothing downloaded. It sits behind
-       everything and ignores clicks.
-       -------------------------------------------------------------------- */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      opacity: .75;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.22'/%3E%3C/svg%3E");
-    }
 
     h1, h2, h3 {
       font-family: var(--serif);
@@ -547,12 +521,19 @@
         --light:  #232120;
         --notice: #3a2f1b;
       }
-      body          { background: #17171a; }
-      body::before  { opacity: .85; mix-blend-mode: lighten; }
-      body::after   { opacity: .55; }   /* the monogram needs less weight on dark */
+      body {
+        background-color: #17171a;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%23e2929c' opacity='.045'%3EAIDX%3C/text%3E%3C/svg%3E"),
+                          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.22'/%3E%3C/svg%3E");
+        background-blend-mode: normal, screen;
+      }
       header        { background: rgba(23, 23, 26, .94); }
       .button       { color: #17171a; }
       .card         { background: #201e22; }
+      /* the banner keeps deep tones; the light accent would wash it out */
+      .banner       { background: linear-gradient(135deg, #37101a, #6d1c2a); }
+      .banner h1    { color: #fff; }
+      .banner .record b { color: #f0b9c0; }
       .jump         { background: #2b1218; }
       .jump:hover   { background: #3a1820; }
       .button:hover { background: #f4f2ef; color: #17171a; }
