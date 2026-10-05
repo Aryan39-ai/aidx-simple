@@ -86,6 +86,22 @@
     /* Text selection picks up the accent instead of browser blue */
     ::selection { background: #f0dfe2; color: #17161a; }
 
+    /* --------------------------------------------------------------------
+       PAPER GRAIN
+       A fine speckle over the whole page, drawn by the browser from the
+       small SVG below. No image file, nothing downloaded. It sits behind
+       everything and ignores clicks.
+       -------------------------------------------------------------------- */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .75;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.085'/%3E%3C/svg%3E");
+    }
+
     h1, h2, h3 {
       font-family: var(--serif);
       color: var(--black);
@@ -439,6 +455,7 @@
         --notice: #3a2f1b;
       }
       body          { background: #17171a; }
+      body::before  { opacity: .85; mix-blend-mode: lighten; }
       header        { background: rgba(23, 23, 26, .94); }
       .button       { color: #17171a; }
       .button:hover { background: #f4f2ef; color: #17171a; }
