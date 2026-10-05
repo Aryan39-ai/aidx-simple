@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   ===========================================================================
-  AIDX LAB — one-page website
+  AIDX LAB — one-page research site
   ===========================================================================
 
   WHAT IS IN THIS FILE, IN ORDER:
@@ -14,11 +14,9 @@
   TO CHANGE THE WORDS:   go to PART 3 and type over them.
   TO CHANGE THE COLOURS: go to PART 1.
 
-  Each section below starts with a banner like this:
-
-    <!== ============ SECTION NAME ============ ==>
-
-  so you can scroll and find things quickly.
+  LAYOUT IDEA: most sections are two columns — a small label on the left,
+  the content on the right. Lists are numbered rows separated by rules,
+  like a research index, rather than boxes.
   ===========================================================================
 -->
 <html lang="en">
@@ -38,24 +36,28 @@
   <style>
     /* ====================================================================
        PART 2 — STYLES
-       ====================================================================
-       Read this like a list of rules. Each block below controls one part
-       of the page, and they are in the same order as the page itself.
+       Each block below controls one part of the page, in the same order
+       as the page itself.
        ==================================================================== */
 
 
     /* --------------------------------------------------------------------
-       2.1  COLOURS
-       Change a code here and every place that uses it changes too.
+       2.1  COLOURS AND TYPE
+       Four colours do all the work. The accent is used only for links,
+       status words and the current menu item.
        -------------------------------------------------------------------- */
     :root {
-      --red:    #7b1e2b;   /* buttons, links, numbers */
+      --red:    #7b1e2b;   /* accent: links, status, active menu item */
       --black:  #1b1a19;   /* headings */
-      --text:   #3d3b39;   /* normal text */
-      --grey:   #8d8882;   /* small labels */
-      --line:   #e5e1db;   /* thin dividing lines */
-      --light:  #f7f5f1;   /* light grey boxes */
-      --notice: #fcefdc;   /* the prototype bar at the top */
+      --text:   #3d3b39;   /* body text */
+      --grey:   #8d8882;   /* labels and small print */
+      --line:   #ddd8d1;   /* rules between rows */
+      --light:  #f7f5f1;   /* the few tinted areas */
+      --notice: #fcefdc;   /* prototype strip at the top */
+
+      --serif: Georgia, "Times New Roman", serif;
+      --sans:  Arial, Helvetica, sans-serif;
+      --mono:  ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
 
@@ -64,258 +66,321 @@
        -------------------------------------------------------------------- */
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: var(--sans);
       font-size: 17px;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--text);
       background: white;
     }
 
-    h1, h2, h3 {
-      font-family: Georgia, "Times New Roman", serif;
-      color: var(--black);
-    }
-
+    h1, h2, h3 { font-family: var(--serif); color: var(--black); font-weight: 700; }
     a { color: var(--red); }
 
-    /* Holds everything in a centred column, so lines are not too wide */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    /* Holds everything in a centred column */
+    .container { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
 
-    /* Space above and below every section, and the line between them */
-    section {
-      padding: 72px 0;
-      border-bottom: 1px solid var(--line);
-      scroll-margin-top: 80px;   /* stops the sticky menu covering headings */
-    }
+    section { padding: 64px 0; border-top: 1px solid var(--line); scroll-margin-top: 76px; }
 
-    h2 { font-size: 38px; margin-top: 0; margin-bottom: 18px; }
-    section > .container > p { max-width: 680px; }
+    /* Small monospace label, used for section names and status text */
+    .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
 
 
     /* --------------------------------------------------------------------
-       2.3  PROTOTYPE BAR  (the strip at the very top)
+       2.3  TWO-COLUMN SECTIONS
+       A small label on the left, the content on the right.
+       -------------------------------------------------------------------- */
+    .cols { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 40px; }
+    .cols h2 { margin: 0 0 8px; font-size: 27px; }
+    .cols h3 { margin: 30px 0 8px; font-size: 18px; }
+    .lead-in { max-width: 62ch; margin: 0 0 26px; }
+
+
+    /* --------------------------------------------------------------------
+       2.4  PROTOTYPE STRIP
        -------------------------------------------------------------------- */
     .notice {
       background: var(--notice);
-      font-size: 14px;
-      padding: 8px 0;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .04em;
+      padding: 7px 0;
     }
 
 
     /* --------------------------------------------------------------------
-       2.4  MENU
+       2.5  MENU
+       Sticky, with the current section underlined (see PART 4).
        -------------------------------------------------------------------- */
-    /* "sticky" keeps the menu on screen while you scroll */
     header {
-      border-bottom: 1px solid var(--line);
       position: sticky;
       top: 0;
-      background: white;
       z-index: 10;
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: saturate(140%) blur(6px);
+      border-bottom: 1px solid var(--line);
     }
 
     header .container {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: baseline;
       flex-wrap: wrap;
-      gap: 10px;
-      padding-top: 16px;
-      padding-bottom: 16px;
+      gap: 6px 20px;
+      padding-top: 14px;
+      padding-bottom: 14px;
     }
 
-    .logo { font-family: Georgia, serif; font-size: 26px; color: var(--black); text-decoration: none; }
+    .logo { font-family: var(--serif); font-size: 21px; color: var(--black); text-decoration: none; }
     .logo span { color: var(--red); font-style: italic; }
 
+    nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
     nav a {
-      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--grey);
       text-decoration: none;
-      margin-left: 18px;
-      padding-bottom: 3px;
-      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color .15s;
     }
-    nav a:hover { color: var(--red); }
-
-    /* The section you are looking at gets underlined (see PART 4) */
+    nav a:hover { color: var(--black); }
     nav a.here { color: var(--red); border-bottom-color: var(--red); }
 
 
     /* --------------------------------------------------------------------
-       2.5  BUTTONS
-       "red" is the solid one. Keep only one solid button on the page.
+       2.6  TOP OF THE PAGE
+       Left-aligned and narrow on purpose: the question, a short
+       description, then a record line saying where the project is up to.
        -------------------------------------------------------------------- */
+    .hero { padding: 72px 0 56px; border-top: 0; }
+
+    .hero h1 {
+      font-size: clamp(32px, 4.6vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -.015em;
+      margin: 14px 0 20px;
+      max-width: 19ch;
+    }
+    .hero p { font-size: 19px; max-width: 54ch; margin: 0 0 26px; }
+
+    /* One action, with one quiet link beside it */
+    .actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
     .button {
       display: inline-block;
-      padding: 12px 22px;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      color: var(--black);
+      padding: 11px 20px;
+      background: var(--red);
+      color: white;
       text-decoration: none;
+      font-size: 15px;
+      transition: background .15s;
     }
-    .button.red { background: var(--red); border-color: var(--red); color: white; }
-
-
-    /* --------------------------------------------------------------------
-       2.6  TOP OF THE PAGE (the hero)
-       The soft circle behind the heading is drawn with CSS, so there is
-       no image file to load.
-       -------------------------------------------------------------------- */
-    .hero { position: relative; overflow: hidden; }
-
-    .hero h1 { font-size: 52px; line-height: 1.1; margin: 20px 0; max-width: 700px; }
-    .hero p  { font-size: 20px; max-width: 600px; }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -180px;
-      right: -160px;
-      width: 620px;
-      height: 620px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--red) 0%, transparent 70%);
-      opacity: .13;
-      pointer-events: none;
+    .button:hover { background: var(--black); }
+    .quiet {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color .15s;
     }
-    .hero .container { position: relative; }
+    .quiet:hover { color: var(--black); }
 
-
-    /* --------------------------------------------------------------------
-       2.7  FACTS STRIP  (3 open projects · No closing date · …)
-       -------------------------------------------------------------------- */
-    .facts {
+    /* The record line: status, semester, version, last updated */
+    .record {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px 50px;
-      margin-top: 42px;
-      padding-top: 26px;
+      gap: 6px 28px;
+      margin: 46px 0 0;
+      padding-top: 14px;
       border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey);
     }
-    .fact strong { display: block; font-family: Georgia, serif; font-size: 30px; color: var(--red); line-height: 1.1; }
-    .fact span   { font-size: 15px; color: var(--grey); }
+    .record b { color: var(--red); font-weight: 400; }
 
 
     /* --------------------------------------------------------------------
-       2.8  CARDS  (research areas, projects, people)
+       2.7  NUMBERED INDEX ROWS  (research areas, projects)
+       Rules and numbers instead of boxes.
        -------------------------------------------------------------------- */
-    /* Cards sit side by side and wrap onto the next row automatically */
-    .grid {
+    .index { border-top: 1px solid var(--line); }
+
+    .entry {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: 46px minmax(0, 1fr);
+      gap: 0 14px;
+      padding: 22px 8px 22px 0;
+      border-bottom: 1px solid var(--line);
+      transition: background .15s;
     }
-
-    .card {
-      border: 1px solid var(--line);
-      padding: 22px;
-      background: white;
-      transition: transform .15s, border-color .15s, box-shadow .15s;
+    .entry:hover { background: var(--light); }
+    .entry .num { font-family: var(--mono); font-size: 12px; color: var(--red); padding-top: 7px; }
+    .entry h3 { margin: 0 0 4px; font-size: 21px; line-height: 1.25; }
+    .entry p { margin: 0 0 6px; max-width: 64ch; }
+    .entry p:last-child { margin-bottom: 0; }
+    .entry .meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin: 0 0 8px;
     }
+    .entry .meta b { color: var(--red); font-weight: 400; }
 
-    /* Cards lift slightly when you point at them */
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: var(--red);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+    /* An aside inside an entry: what a student would actually do */
+    .aside {
+      margin: 10px 0 0;
+      padding-left: 14px;
+      border-left: 2px solid var(--red);
+      font-size: 15.5px;
+      max-width: 60ch;
     }
-
-    .card h3 { margin: 0 0 6px; }
-    .number  { color: var(--red); font-style: italic; font-family: Georgia, serif; }
-    .role    { color: var(--grey); font-size: 15px; margin: 0; }
-    .path    { color: var(--red); font-size: 15px; }
 
 
     /* --------------------------------------------------------------------
-       2.9  PHOTO CIRCLES on the people cards
-       To use a real photo, put the file in this folder and replace
-         <div class="photo">SA</div>
-       with
-         <img class="photo" src="your-photo.jpg" alt="Photo of S. Aryan">
+       2.8  PEOPLE
+       A list, not a grid of identical cards.
        -------------------------------------------------------------------- */
+    .person {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 0 18px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .person:first-of-type { border-top: 1px solid var(--line); }
+
     .photo {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
+      width: 72px;
+      height: 72px;
       background: var(--light);
       border: 1px solid var(--line);
-      margin-bottom: 12px;
+      object-fit: cover;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Georgia, serif;
-      font-size: 20px;
+      font-family: var(--mono);
+      font-size: 13px;
       color: var(--grey);
-      object-fit: cover;   /* crops a real photo neatly into the circle */
+    }
+
+    .person h3 { margin: 0 0 2px; font-size: 20px; }
+    .person .role {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin: 0 0 8px;
+    }
+    .person p { margin: 0 0 6px; max-width: 60ch; }
+    .person .path { color: var(--red); font-size: 15px; margin: 0; }
+
+
+    /* --------------------------------------------------------------------
+       2.9  TABLES  (past members, requirements, the method table)
+       "blank" marks a number that is not confirmed yet.
+       -------------------------------------------------------------------- */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 380px; }
+    td, th { overflow-wrap: anywhere; }
+
+    th {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--grey);
+      text-align: left;
+      padding: 0 14px 8px 0;
+      border-bottom: 1px solid var(--black);
+    }
+    td { padding: 11px 14px 11px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+    td:first-child { color: var(--black); }
+
+    .blank td { color: var(--grey); font-style: italic; }
+    .blank td:first-child { font-style: normal; }
+
+
+    /* --------------------------------------------------------------------
+       2.10  THE FOUR STEPS under "How to apply"
+       A numbered list with hanging numbers, not four equal boxes.
+       -------------------------------------------------------------------- */
+    .steps { list-style: none; margin: 0; padding: 0; max-width: 62ch; }
+    .steps li { position: relative; padding: 10px 0 10px 42px; border-bottom: 1px solid var(--line); }
+    .steps li:last-child { border-bottom: 0; }
+    .steps .n { position: absolute; left: 0; top: 11px; font-family: var(--mono); font-size: 12px; color: var(--red); }
+    .steps b { color: var(--black); }
+
+    ul.plain { margin: 0; padding-left: 18px; max-width: 60ch; }
+    ul.plain li { margin-bottom: 4px; }
+
+
+    /* --------------------------------------------------------------------
+       2.11  FOOTER
+       -------------------------------------------------------------------- */
+    footer { padding: 34px 0 48px; border-top: 1px solid var(--line); }
+    footer p { margin: 0 0 6px; font-size: 14px; color: var(--grey); }
+    footer .label { display: block; margin-bottom: 10px; }
+
+
+    /* --------------------------------------------------------------------
+       2.12  PHONES  (screens narrower than 720 pixels)
+       The label column moves above the content instead of beside it.
+       -------------------------------------------------------------------- */
+    @media (max-width: 720px) {
+      section { padding: 44px 0; }
+      .hero { padding: 48px 0 40px; }
+      .cols { grid-template-columns: 1fr; gap: 10px; }
+      .entry { grid-template-columns: 34px minmax(0, 1fr); }
+      .person { grid-template-columns: 56px minmax(0, 1fr); }
+      .photo { width: 56px; height: 56px; }
+      nav { gap: 4px 14px; }
     }
 
 
     /* --------------------------------------------------------------------
-       2.10  TABLES  (past members, requirements, the rationale table)
-       "blank" is the grey row used for numbers that are not confirmed.
-       -------------------------------------------------------------------- */
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); }
-    th { color: var(--grey); font-weight: normal; font-size: 15px; }
-    .blank td { background: var(--light); color: var(--grey); font-style: italic; }
-
-
-    /* --------------------------------------------------------------------
-       2.11  THE FOUR STEPS under "How to apply"
-       -------------------------------------------------------------------- */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-      list-style: none;
-      padding: 0;
-    }
-    .steps li { border-top: 3px solid var(--red); padding-top: 10px; }
-
-
-    /* --------------------------------------------------------------------
-       2.12  FOOTER
-       -------------------------------------------------------------------- */
-    footer { padding: 30px 0; color: var(--grey); font-size: 15px; }
-
-
-    /* --------------------------------------------------------------------
-       2.13  PHONES  (screens narrower than 600 pixels)
-       -------------------------------------------------------------------- */
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 36px; }
-      nav a { margin-left: 0; margin-right: 14px; }
-      section { padding: 48px 0; }
-      h2 { font-size: 30px; }
-      .fact strong { font-size: 24px; }
-    }
-
-
-    /* --------------------------------------------------------------------
-       2.14  DARK MODE
-       Follows the visitor's own computer setting. Only colours change —
-       no layout is written twice. This block is last on purpose, so these
-       colours win over the ones above.
+       2.13  DARK MODE
+       Follows the visitor's own computer setting. Colours only.
        -------------------------------------------------------------------- */
     @media (prefers-color-scheme: dark) {
       :root {
-        --red:    #e88f9c;
+        --red:    #e2929c;
         --black:  #f4f2ef;
-        --text:   #d6d2cc;
-        --grey:   #9a948c;
-        --line:   #39342f;
-        --light:  #26231f;
+        --text:   #d2cec8;
+        --grey:   #968f87;
+        --line:   #38332e;
+        --light:  #232120;
         --notice: #3a2f1b;
       }
-      body          { background: #1b1917; }
-      header        { background: #1b1917; }
-      .card         { background: #201e1b; }
-      .button       { background: transparent; }
-      .button.red   { color: #241014; }
-      .hero::before { opacity: .22; }
+      body          { background: #1a1917; }
+      header        { background: rgba(26, 25, 23, .94); }
+      .button       { color: #1a1210; }
+      .button:hover { background: #f4f2ef; color: #1a1210; }
+      th            { border-bottom-color: var(--grey); }
+    }
+
+
+    /* --------------------------------------------------------------------
+       2.14  REDUCED MOTION
+       Some people set their computer to limit animation. Respect it.
+       -------------------------------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
 
@@ -325,30 +390,29 @@
 
   <!-- ======================================================================
        PART 3 — THE PAGE
-       Everything below is what visitors read. Type over the words.
        ====================================================================== -->
 
 
   <!-- ======================================================================
-       PROTOTYPE NOTICE
+       PROTOTYPE STRIP
        DELETE this whole block once the content is real.
        ====================================================================== -->
   <div class="notice">
     <div class="container">
-      Prototype — the people, projects and papers below are sample content, not real AIDX Lab information.
+      Prototype — people, projects and papers below are sample content, not real AIDX Lab information
     </div>
   </div>
 
 
   <!-- ======================================================================
        MENU
-       Each link jumps to a section further down. The name after the #
-       must match that section's id, for example id="research".
+       Each link jumps to a section. The name after the # must match that
+       section's id, for example id="research".
        ====================================================================== -->
   <header>
     <div class="container">
 
-      <a class="logo" href="#">AIDX <span>Lab</span></a>
+      <a class="logo" href="#top">AIDX <span>Lab</span></a>
 
       <nav>
         <a href="#research">Research</a>
@@ -356,7 +420,7 @@
         <a href="#people">People</a>
         <a href="#join">Join us</a>
         <a href="#contact">Contact</a>
-        <a href="#why">Why this site</a>
+        <a href="#why">Method</a>
       </nav>
 
     </div>
@@ -365,27 +429,31 @@
 
   <!-- ======================================================================
        TOP OF THE PAGE
-       The heading is a question on purpose — one line, and a visitor
-       knows what the lab is about.
+       The heading is the question the lab is trying to answer. The record
+       line underneath says where the project is up to.
        ====================================================================== -->
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="container">
+
+      <p class="label">AIDX Lab — AI for Decision Excellence</p>
 
       <h1>How should organisations decide when the data is incomplete?</h1>
 
-      <p>AIDX Lab — AI for Decision Excellence — is a research group in the Faculty of Law and Business at Australian Catholic University.</p>
+      <p>A research group in the Faculty of Law and Business at Australian Catholic
+      University, working on decisions made where the evidence is partial, late or contested.</p>
 
-      <a class="button" href="#research">Our research</a>
-      <a class="button red" href="#join">Join the lab</a>
-
-      <!-- Four facts a student wants straight away.
-           Update these numbers when you add projects or people. -->
-      <div class="facts">
-        <div class="fact"><strong>3</strong><span>open projects</span></div>
-        <div class="fact"><strong>No</strong><span>closing date</span></div>
-        <div class="fact"><strong>1 week</strong><span>to a reply</span></div>
-        <div class="fact"><strong>Honours–PhD</strong><span>levels we supervise</span></div>
+      <div class="actions">
+        <a class="button" href="#join">Join the lab</a>
+        <a class="quiet" href="#research">Read the research ↓</a>
       </div>
+
+      <!-- Project record. Keep these honest, and update them as things change. -->
+      <p class="record">
+        <span>Status <b>Active</b></span>
+        <span>Semester 2, 2026</span>
+        <span>Site prototype v0.4</span>
+        <span>Updated October 2026</span>
+      </p>
 
     </div>
   </section>
@@ -394,24 +462,34 @@
   <!-- ======================================================================
        RESEARCH AREAS
 
-       TO ADD ONE: copy a whole <div class="card"> … </div> block,
+       TO ADD ONE: copy a whole <article class="entry"> … </article> block,
        paste it below, and change the number and the words.
        ====================================================================== -->
   <section id="research">
     <div class="container">
+      <div class="cols">
 
-      <h2>Research</h2>
+        <p class="label">Research</p>
 
-      <div class="grid">
+        <div>
+          <h2>What we are trying to answer</h2>
+          <p class="lead-in">Each area is written as a question rather than a topic, so it is
+          clear what the work is for.</p>
 
-        <div class="card">
-          <span class="number">01</span>
-          <h3>Decision Science</h3>
-          <p>How do complex organizations make choices under extreme uncertainty?</p>
+          <div class="index">
+
+            <article class="entry">
+              <span class="num">01</span>
+              <div>
+                <h3>Decision Science</h3>
+                <p>How do complex organizations make choices under extreme uncertainty?</p>
+              </div>
+            </article>
+
+          </div>
         </div>
 
       </div>
-
     </div>
   </section>
 
@@ -419,41 +497,60 @@
   <!-- ======================================================================
        OPEN PROJECTS
 
-       Each project is written as a question, so a student can tell
-       straight away whether they care about it.
-       TO ADD ONE: copy a whole <div class="card"> … </div> block.
+       The line with the red bar beside it says what a student would do.
+       TO ADD ONE: copy a whole <article class="entry"> … </article> block.
        ====================================================================== -->
   <section id="projects">
     <div class="container">
+      <div class="cols">
 
-      <h2>Open projects</h2>
-      <p>Work a student could pick up now. Each one is a question we are trying to answer.</p>
+        <p class="label">Projects</p>
 
-      <div class="grid">
+        <div>
+          <h2>Open projects</h2>
+          <p class="lead-in">Work a student could pick up now. Each one is a question we are
+          trying to answer, not a topic area.</p>
 
-        <div class="card">
-          <h3>Can an agent be trusted with real tools?</h3>
-          <p class="role">Honours or summer intern &middot; S. Aryan</p>
-          <p>Give an agent a small set of real tools and a budget, then log every step to see where it goes wrong when nobody is checking.</p>
-          <p class="path">You would build the sandbox and compare how two agents spend the same budget.</p>
-        </div>
+          <div class="index">
 
-        <div class="card">
-          <h3>How far does a poisoned input travel?</h3>
-          <p class="role">Honours or PhD &middot; A. Arjun</p>
-          <p>One bad input goes into a chain of agents that trust each other. We measure how many steps it survives, and what stops it.</p>
-          <p class="path">You would write the test cases and turn the results into a dataset.</p>
-        </div>
+            <article class="entry">
+              <span class="num">01</span>
+              <div>
+                <h3>Can an agent be trusted with real tools?</h3>
+                <p class="meta">Honours / Summer intern · Supervisor S. Aryan · <b>Open</b></p>
+                <p>Give an agent a small set of real tools and a budget, then log every step to
+                see where it goes wrong when nobody is checking.</p>
+                <p class="aside">You would build the sandbox and compare how two agents spend the
+                same budget.</p>
+              </div>
+            </article>
 
-        <div class="card">
-          <h3>Does an explanation change the decision?</h3>
-          <p class="role">Honours &middot; S. Aryan</p>
-          <p>People make the same decision with and without an AI explanation. We look at whether the explanation changes the choice, or only their confidence in it.</p>
-          <p class="path">You would run the sessions and analyse the results.</p>
+            <article class="entry">
+              <span class="num">02</span>
+              <div>
+                <h3>How far does a poisoned input travel?</h3>
+                <p class="meta">Honours / PhD · Supervisor A. Arjun · <b>Open</b></p>
+                <p>One bad input goes into a chain of agents that trust each other. We measure how
+                many steps it survives, and what stops it.</p>
+                <p class="aside">You would write the test cases and turn the results into a dataset.</p>
+              </div>
+            </article>
+
+            <article class="entry">
+              <span class="num">03</span>
+              <div>
+                <h3>Does an explanation change the decision?</h3>
+                <p class="meta">Honours · Supervisor S. Aryan · <b>Open</b></p>
+                <p>People make the same decision with and without an AI explanation. We look at
+                whether the explanation changes the choice, or only their confidence in it.</p>
+                <p class="aside">You would run the sessions and analyse the results.</p>
+              </div>
+            </article>
+
+          </div>
         </div>
 
       </div>
-
     </div>
   </section>
 
@@ -461,101 +558,126 @@
   <!-- ======================================================================
        PEOPLE
 
-       TO ADD SOMEONE: copy a whole <div class="card"> … </div> block.
-       The two letters inside <div class="photo"> are their initials.
+       TO ADD SOMEONE: copy a whole <article class="person"> … </article>
+       block. For a photo, replace <div class="photo">XX</div> with
+       <img class="photo" src="your-photo.jpg" alt="Photo of …">
        ====================================================================== -->
   <section id="people">
     <div class="container">
+      <div class="cols">
 
-      <h2>People</h2>
+        <p class="label">People</p>
 
-      <div class="grid">
+        <div>
+          <h2>Who is here</h2>
+          <p class="lead-in">Everyone writes their own description. The line in red is their
+          path — where they studied, and where they are now.</p>
 
-        <div class="card">
-          <img class="photo" src="IMG_4031.jpeg" alt="Photo of S. Aryan">
-          <h3>S. Aryan</h3>
-          <p class="role">PhD Candidate</p>
-          <p>Engineering trust out of autonomous systems, one exploit at a time.</p>
-          <p class="path">BEng → MSc Security, Lagos → AIDX</p>
-        </div>
+          <article class="person">
+            <img class="photo" src="IMG_4031.jpeg" alt="Photo of S. Aryan">
+            <div>
+              <h3>S. Aryan</h3>
+              <p class="role">PhD Candidate</p>
+              <p>Engineering trust out of autonomous systems, one exploit at a time.</p>
+              <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+            </div>
+          </article>
 
-        <div class="card">
-          <div class="photo">AA</div>
-          <h3>A. Arjun</h3>
-          <p class="role">PhD Candidate</p>
-          <p>Securing AI isn't about building stronger walls; it's about teaching agents not to open the door.</p>
-          <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+          <article class="person">
+            <div class="photo">AA</div>
+            <div>
+              <h3>A. Arjun</h3>
+              <p class="role">PhD Candidate</p>
+              <p>Securing AI isn't about building stronger walls; it's about teaching agents not to open the door.</p>
+              <p class="path">BEng → MSc Security, Lagos → AIDX</p>
+            </div>
+          </article>
+
         </div>
 
       </div>
+    </div>
+  </section>
 
 
-      <!-- ========== PAST MEMBERS ==========
-           TO ADD A ROW: copy one <tr> … </tr> line below. -->
-      <h3 style="margin-top: 40px;">Where past members went next</h3>
+  <!-- ======================================================================
+       PAST MEMBERS
+       TO ADD A ROW: copy one <tr> … </tr> line.
+       ====================================================================== -->
+  <section id="alumni">
+    <div class="container">
+      <div class="cols">
 
-      <table>
-        <tr><th>Name</th><th>Here as</th><th>Went on to</th></tr>
-        <tr><td>M. Halloran</td><td>Honours, 2025–2026</td><td>PhD candidate, Go8 university</td></tr>
-        <tr><td>K. Sandhu</td><td>PhD, 2022–2026</td><td>Research Scientist, industry lab</td></tr>
-        <tr><td>E. Vasquez</td><td>Summer intern, 2025</td><td>ML Engineer, startup</td></tr>
-      </table>
+        <p class="label">Alumni</p>
 
+        <div>
+          <h2>Where past members went next</h2>
+          <p class="lead-in">People who finish here stay on the site. A student weighing up three
+          or four years wants to know what happens afterwards.</p>
+
+          <div class="table-wrap">
+          <table>
+            <tr><th>Name</th><th>Here as</th><th>Went on to</th></tr>
+            <tr><td>M. Halloran</td><td>Honours, 2025–2026</td><td>PhD candidate, Go8 university</td></tr>
+            <tr><td>K. Sandhu</td><td>PhD, 2022–2026</td><td>Research Scientist, industry lab</td></tr>
+            <tr><td>E. Vasquez</td><td>Summer intern, 2025</td><td>ML Engineer, startup</td></tr>
+          </table>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
 
   <!-- ======================================================================
        JOIN US
+       The two grey rows stay blank until the faculty confirms the real
+       numbers. A blank is better than a guess.
        ====================================================================== -->
   <section id="join">
     <div class="container">
+      <div class="cols">
 
-      <h2>Join the lab</h2>
-      <p>There is no closing date. We take Honours, Masters, PhD and placement students.</p>
+        <p class="label">Join us</p>
 
+        <div>
+          <h2>Join the lab</h2>
+          <p class="lead-in">There is no closing date. We take Honours, Masters, PhD and
+          placement students, and we read applications all year.</p>
 
-      <!-- ========== WHAT WE ASK FOR ==========
-           The two grey rows stay blank until the faculty confirms the
-           real numbers. A blank is better than a guess. -->
-      <h3>What we ask for</h3>
+          <h3>What we ask for</h3>
+          <div class="table-wrap">
+          <table>
+            <tr class="blank"><td>Marks</td><td>Placeholder — confirm with the faculty</td></tr>
+            <tr class="blank"><td>English</td><td>Placeholder — confirm ACU's requirement</td></tr>
+            <tr><td>Publications</td><td>Not needed for Honours. Helpful for PhD.</td></tr>
+            <tr><td>Deadline</td><td>None. We read applications all year.</td></tr>
+          </table>
+          </div>
 
-      <table>
-        <tr class="blank"><td>Marks</td><td>Placeholder — confirm with the faculty</td></tr>
-        <tr class="blank"><td>English</td><td>Placeholder — confirm ACU's requirement</td></tr>
-        <tr><td>Publications</td><td>Not needed for Honours. Helpful for PhD.</td></tr>
-        <tr><td>Deadline</td><td>None. We read applications all year.</td></tr>
-      </table>
+          <h3>What to send</h3>
+          <ul class="plain">
+            <li>Your CV</li>
+            <li>Your academic transcript</li>
+            <li>A short note naming two or three research areas you like</li>
+            <li>A code sample, report or poster</li>
+          </ul>
 
+          <h3>How to apply</h3>
+          <ol class="steps">
+            <li><span class="n">01</span><b>Explore.</b> Read the research areas.</li>
+            <li><span class="n">02</span><b>Choose.</b> Pick one that interests you.</li>
+            <li><span class="n">03</span><b>Prepare.</b> Get the four things above ready.</li>
+            <li><span class="n">04</span><b>Apply.</b> Email us.</li>
+          </ol>
 
-      <!-- ========== WHAT TO SEND ========== -->
-      <h3>What to send</h3>
+          <h3>What happens after you email</h3>
+          <p>We reply within about a week. If the fit looks right, we set up a 20-minute chat to
+          talk through the project before anything formal starts. You will not be left wondering.</p>
+        </div>
 
-      <ul>
-        <li>Your CV</li>
-        <li>Your academic transcript</li>
-        <li>A short note naming two or three research areas you like</li>
-        <li>A code sample, report or poster</li>
-      </ul>
-
-
-      <!-- ========== HOW TO APPLY ========== -->
-      <h3>How to apply</h3>
-
-      <ol class="steps">
-        <li><strong>1. Explore</strong><br>Read the research areas.</li>
-        <li><strong>2. Choose</strong><br>Pick one that interests you.</li>
-        <li><strong>3. Prepare</strong><br>Get the four things above ready.</li>
-        <li><strong>4. Apply</strong><br>Email us.</li>
-      </ol>
-
-
-      <!-- ========== WHAT HAPPENS NEXT ========== -->
-      <h3>What happens after you email</h3>
-
-      <p>We reply within about a week. If the fit looks right, we set up a 20-minute chat
-      to talk through the project before anything formal starts. You will not be left wondering.</p>
-
+      </div>
     </div>
   </section>
 
@@ -569,45 +691,55 @@
        ====================================================================== -->
   <section id="contact">
     <div class="container">
+      <div class="cols">
 
-      <h2>Contact</h2>
+        <p class="label">Contact</p>
 
-      <p>Email:
-        <a href="mailto:placeholder@acu.edu.au?subject=Research%20enquiry&amp;body=Hello%2C%0A%0AI%20am%20interested%20in%3A%20%5Bproject%20or%20research%20area%5D%0A%0AAttached%3A%0A-%20CV%0A-%20Transcript%0A-%20A%20short%20note%20on%20why%20this%20area%0A-%20A%20code%20sample%2C%20report%20or%20poster%0A%0AThank%20you%2C%0A"><strong>placeholder [at] acu.edu.au</strong></a>
-      </p>
+        <div>
+          <h2>Contact</h2>
+          <p>
+            <a href="mailto:placeholder@acu.edu.au?subject=Research%20enquiry&amp;body=Hello%2C%0A%0AI%20am%20interested%20in%3A%20%5Bproject%20or%20research%20area%5D%0A%0AAttached%3A%0A-%20CV%0A-%20Transcript%0A-%20A%20short%20note%20on%20why%20this%20area%0A-%20A%20code%20sample%2C%20report%20or%20poster%0A%0AThank%20you%2C%0A">placeholder [at] acu.edu.au</a>
+            — clicking the address opens an email with the subject and checklist filled in.
+          </p>
+          <p>Faculty of Law and Business, Australian Catholic University, North Sydney Campus.</p>
+        </div>
 
-      <p class="role">Clicking the address opens an email with the subject and checklist already filled in.</p>
-
-      <p>Faculty of Law and Business, Australian Catholic University, North Sydney Campus</p>
-
+      </div>
     </div>
   </section>
 
 
   <!-- ======================================================================
-       WHY THIS SITE LOOKS LIKE THIS
+       METHOD — why the site is built this way
 
-       Each row: what the review of ten Australian lab websites found,
-       what this site does about it, and where it was seen.
+       Each row: what the review of ten Australian lab websites found, what
+       this site does about it, and where it was seen.
        ====================================================================== -->
   <section id="why">
     <div class="container">
+      <div class="cols">
 
-      <h2>Why this site looks like this</h2>
+        <p class="label">Method</p>
 
-      <p>This site was designed from a review of ten Australian university research-lab
-      websites. Every choice below came from that review, not from taste.</p>
+        <div>
+          <h2>Why this site looks like this</h2>
+          <p class="lead-in">The structure came from a review of ten Australian university
+          research-lab websites. Every choice below traces back to that review.</p>
 
-      <table>
-        <tr><th>What the review found</th><th>What this site does</th><th>Seen in</th></tr>
-        <tr><td>Every lab is competing for students</td><td>&ldquo;Join the lab&rdquo; is the only solid button on the page</td><td>9 of 10 sites</td></tr>
-        <tr><td>Entry requirements were vague or missing</td><td>A requirements table, with blanks where the number is not confirmed</td><td>1 of 10 sites did this well</td></tr>
-        <tr><td>People listed as a name and a job title</td><td>Each person is written as a path, in their own words</td><td>Melbourne</td></tr>
-        <tr><td>Past members deleted when they leave</td><td>An outcomes table showing where they went next</td><td>Curtin</td></tr>
-        <tr><td>News pages that stopped years ago</td><td>No news page at all, so nothing can go stale</td><td>4 of 10 sites had dead pages</td></tr>
-        <tr><td>Nine sections, most of them empty</td><td>One page that can be read in two minutes</td><td>6 of 10 sites</td></tr>
-      </table>
+          <div class="table-wrap">
+          <table>
+            <tr><th>What the review found</th><th>What this site does</th><th>Seen in</th></tr>
+            <tr><td>Every lab is competing for students</td><td>&ldquo;Join the lab&rdquo; is the only solid button on the page</td><td>9 of 10 sites</td></tr>
+            <tr><td>Entry requirements were vague or missing</td><td>A requirements table, with blanks where the number is not confirmed</td><td>1 of 10 sites did this well</td></tr>
+            <tr><td>People listed as a name and a job title</td><td>Each person is written as a path, in their own words</td><td>Melbourne</td></tr>
+            <tr><td>Past members deleted when they leave</td><td>An outcomes table showing where they went next</td><td>Curtin</td></tr>
+            <tr><td>News pages that stopped years ago</td><td>No news page at all, so nothing can go stale</td><td>4 of 10 sites had dead pages</td></tr>
+            <tr><td>Nine sections, most of them empty</td><td>One page that can be read in two minutes</td><td>6 of 10 sites</td></tr>
+          </table>
+          </div>
+        </div>
 
+      </div>
     </div>
   </section>
 
@@ -617,8 +749,9 @@
        ====================================================================== -->
   <footer>
     <div class="container">
-      © 2026 AIDX Lab, Australian Catholic University. Last updated October 2026.
-      [Paste ACU's official Acknowledgement of Country here.]
+      <p class="label">AIDX Lab · Australian Catholic University</p>
+      <p>© 2026 AIDX Lab, Australian Catholic University. Site prototype v0.4, updated October 2026.</p>
+      <p>[Paste ACU's official Acknowledgement of Country here.]</p>
     </div>
   </footer>
 
@@ -627,19 +760,19 @@
        PART 4 — THE SCRIPT
 
        The only JavaScript on the page. It underlines the menu item for
-       whichever section is on screen. If a visitor has JavaScript turned
-       off, everything still works — they just do not get the underline.
+       whichever section is on screen. With JavaScript off, everything
+       still works — there is just no underline.
        ====================================================================== -->
   <script>
     // Every link in the menu
     var links = document.querySelectorAll('nav a');
 
-    // Watches the sections and reports when one comes into view
+    // Reports when a section comes into view
     var watcher = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
 
-        // Underline the matching link, remove it from the others
+        // Underline the matching link, clear the others
         links.forEach(function (link) {
           link.classList.toggle('here', link.getAttribute('href') === '#' + entry.target.id);
         });
