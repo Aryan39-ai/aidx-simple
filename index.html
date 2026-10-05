@@ -52,15 +52,18 @@
        -------------------------------------------------------------------- */
     :root {
       --red:    #7b1e2b;   /* accent: links, status, active menu item */
-      --black:  #1b1a19;   /* headings */
-      --text:   #3d3b39;   /* body text */
+      --black:  #17161a;   /* headings */
+      --text:   #3b3a3c;   /* body text */
       --grey:   #8d8882;   /* labels and small print */
-      --line:   #ddd8d1;   /* rules between rows */
-      --light:  #f7f5f1;   /* the few tinted areas */
+      --line:   #e0dad2;   /* rules between rows */
+      --light:  #f6f3ee;   /* the few tinted areas */
       --notice: #fcefdc;   /* prototype strip at the top */
 
-      --serif: Georgia, "Times New Roman", serif;
-      --sans:  Arial, Helvetica, sans-serif;
+      /* A bookish serif for headings, the reader's own interface font for
+         body text, and a plain monospace for labels. All installed fonts —
+         nothing is downloaded, so the page stays fast offline. */
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Charter, Georgia, serif;
+      --sans:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --mono:  ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
@@ -71,14 +74,31 @@
     body {
       margin: 0;
       font-family: var(--sans);
-      font-size: 17px;
-      line-height: 1.65;
+      font-size: 17.5px;
+      line-height: 1.68;
       color: var(--text);
-      background: white;
+      background: #fcfbf9;          /* warm paper, not pure white */
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      font-variant-numeric: oldstyle-num;   /* numerals that sit in the line */
     }
 
-    h1, h2, h3 { font-family: var(--serif); color: var(--black); font-weight: 700; }
-    a { color: var(--red); }
+    /* Text selection picks up the accent instead of browser blue */
+    ::selection { background: #f0dfe2; color: #17161a; }
+
+    h1, h2, h3 {
+      font-family: var(--serif);
+      color: var(--black);
+      font-weight: 600;
+      letter-spacing: -.008em;
+      text-wrap: balance;       /* stops a lonely word on the last line */
+    }
+    a {
+      color: var(--red);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    a:hover { text-decoration-thickness: 2px; }
 
     /* Anyone using a keyboard can see where they are */
     a:focus-visible, button:focus-visible, summary:focus-visible {
@@ -186,11 +206,11 @@
     .hero { padding: 72px 0 56px; border-top: 0; }
 
     .hero h1 {
-      font-size: clamp(32px, 4.6vw, 46px);
-      line-height: 1.12;
-      letter-spacing: -.015em;
-      margin: 14px 0 20px;
-      max-width: 19ch;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -.018em;
+      margin: 16px 0 22px;
+      max-width: 23ch;
     }
     .hero p { font-size: 19px; max-width: 56ch; margin: 0 0 26px; }
 
@@ -249,7 +269,7 @@
       transition: background .15s;
     }
     .entry:hover { background: var(--light); }
-    .entry .num { font-family: var(--mono); font-size: 12px; color: var(--red); padding-top: 7px; }
+    .entry .num { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--red); padding-top: 5px; }
     .entry h3 { margin: 0 0 4px; font-size: 21px; line-height: 1.25; }
     .entry p { margin: 0 0 6px; max-width: 64ch; }
     .entry p:last-child { margin-bottom: 0; }
@@ -264,7 +284,7 @@
     .entry .meta b { color: var(--red); font-weight: 400; }
 
     /* The question an area is asking */
-    .question { font-family: var(--serif); font-size: 17.5px; color: var(--black); font-style: italic; }
+    .question { font-family: var(--serif); font-size: 18.5px; line-height: 1.45; color: var(--black); font-style: italic; }
 
     /* An aside inside an entry: what a student would actually do */
     .aside {
@@ -374,7 +394,7 @@
     .steps { list-style: none; margin: 0; padding: 0; max-width: 62ch; }
     .steps li { position: relative; padding: 10px 0 10px 42px; border-bottom: 1px solid var(--line); }
     .steps li:last-child { border-bottom: 0; }
-    .steps .n { position: absolute; left: 0; top: 11px; font-family: var(--mono); font-size: 12px; color: var(--red); }
+    .steps .n { position: absolute; left: 0; top: 10px; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--red); }
     .steps b { color: var(--black); }
 
     ul.plain { margin: 0; padding-left: 18px; max-width: 60ch; }
@@ -418,10 +438,10 @@
         --light:  #232120;
         --notice: #3a2f1b;
       }
-      body          { background: #1a1917; }
-      header        { background: rgba(26, 25, 23, .94); }
-      .button       { color: #1a1210; }
-      .button:hover { background: #f4f2ef; color: #1a1210; }
+      body          { background: #17171a; }
+      header        { background: rgba(23, 23, 26, .94); }
+      .button       { color: #17171a; }
+      .button:hover { background: #f4f2ef; color: #17171a; }
       th            { border-bottom-color: var(--grey); }
     }
 
