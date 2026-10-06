@@ -51,7 +51,9 @@
        status words and the current menu item.
        -------------------------------------------------------------------- */
     :root {
-      --red:    #7b1e2b;   /* accent: links, status, active menu item */
+      --blue:   #0b3fb5;   /* accent: links, status, active menu item */
+      --cyan:   #00c2e8;   /* bright highlight from the logo */
+      --red:    #0b3fb5;   /* kept as a name so existing rules still work */
       --black:  #17161a;   /* headings */
       --text:   #3b3a3c;   /* body text */
       --grey:   #8d8882;   /* labels and small print */
@@ -80,7 +82,7 @@
       /* The monogram and the paper grain sit on the page itself, so they
          scroll with everything else rather than staying put. */
       background-color: #fcfbf9;    /* warm paper, not pure white */
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%237b1e2b' opacity='.05'%3EAIDX%3C/text%3E%3C/svg%3E"),
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%230b3fb5' opacity='.05'%3EAIDX%3C/text%3E%3C/svg%3E"),
                         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.22'/%3E%3C/svg%3E");
       background-repeat: repeat, repeat;
       -webkit-font-smoothing: antialiased;
@@ -89,7 +91,7 @@
     }
 
     /* Text selection picks up the accent instead of browser blue */
-    ::selection { background: #f0dfe2; color: #17161a; }
+    ::selection { background: #cfe4ff; color: #17161a; }
 
 
 
@@ -189,8 +191,10 @@
       padding-bottom: 14px;
     }
 
-    .logo { font-family: var(--serif); font-size: 21px; color: var(--black); text-decoration: none; }
-    .logo span { color: var(--red); font-style: italic; }
+    .logo { display: inline-flex; align-items: center; text-decoration: none; }
+    .logo img { height: 34px; width: auto; display: block; }
+    /* In dark mode the logo's deep blues go muddy, so lift it slightly */
+    @media (prefers-color-scheme: dark) { .logo img { filter: brightness(1.25) saturate(1.1); } }
 
     nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
     nav a {
@@ -271,7 +275,7 @@
        to the sections below. Cards are used for research areas and
        projects. Corners are softened by --radius, set once here.
        -------------------------------------------------------------------- */
-    :root { --radius: 10px; --deep: #4a1019; }
+    :root { --radius: 10px; --deep: #0a1f6b; }
 
     .banner {
       background: linear-gradient(135deg, var(--deep), var(--red));
@@ -283,7 +287,7 @@
       font-size: 11px;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: #e7c9ce;
+      color: #b9d4ff;
       margin: 0 0 18px;
     }
     .banner h1 {
@@ -379,6 +383,32 @@
 
     /* Link from a research area down to its example project */
     .jump { font-size: 15px; }
+
+
+    /* --------------------------------------------------------------------
+       2.7b  HIGHLIGHTS FEED, VISION LINE, SUB-TOPICS, GROUP HEADINGS
+       -------------------------------------------------------------------- */
+    .feed { list-style: none; margin: 0; padding: 0; max-width: 78ch; }
+    .feed li { padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .feed time {
+      font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--blue, var(--red)); margin-right: 10px;
+    }
+
+    .vision { max-width: 64ch; margin: 0 0 26px; font-size: 18px; }
+
+    .sub { list-style: none; margin: 0 0 16px; padding: 0; }
+    .sub li {
+      position: relative; padding-left: 14px; margin-bottom: 6px;
+      font-size: 14.5px; color: var(--grey);
+    }
+    .sub li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
+
+    .group {
+      font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--grey);
+      margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line);
+    }
 
 
     /* --------------------------------------------------------------------
@@ -513,7 +543,8 @@
        -------------------------------------------------------------------- */
     @media (prefers-color-scheme: dark) {
       :root {
-        --red:    #e2929c;
+        --red:    #6fb2ff;
+        --cyan:   #4fd8f5;
         --black:  #f4f2ef;
         --text:   #d2cec8;
         --grey:   #968f87;
@@ -523,7 +554,7 @@
       }
       body {
         background-color: #17171a;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%23e2929c' opacity='.045'%3EAIDX%3C/text%3E%3C/svg%3E"),
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='155' height='155'%3E%3Ctext x='77' y='88' transform='rotate(-30 77 77)' font-family='Georgia,serif' font-size='32' font-weight='700' text-anchor='middle' fill='%236fb2ff' opacity='.045'%3EAIDX%3C/text%3E%3C/svg%3E"),
                           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.22'/%3E%3C/svg%3E");
         background-blend-mode: normal, screen;
       }
@@ -531,11 +562,11 @@
       .button       { color: #17171a; }
       .card         { background: #201e22; }
       /* the banner keeps deep tones; the light accent would wash it out */
-      .banner       { background: linear-gradient(135deg, #37101a, #6d1c2a); }
+      .banner       { background: linear-gradient(135deg, #061545, #0b3fb5); }
       .banner h1    { color: #fff; }
-      .banner .record b { color: #f0b9c0; }
-      .jump         { background: #2b1218; }
-      .jump:hover   { background: #3a1820; }
+      .banner .record b { color: #8fe4f8; }
+      .jump         { background: #0e2560; }
+      .jump:hover   { background: #16367f; }
       .button:hover { background: #f4f2ef; color: #17171a; }
       th            { border-bottom-color: var(--grey); }
     }
@@ -578,7 +609,7 @@
   <header>
     <div class="container">
 
-      <a class="logo" href="#top">AIDX <span>Lab</span></a>
+      <a class="logo" href="#top"><img src="logo.png" alt="AIDX Lab"></a>
 
       <nav>
         <a href="#research">Research</a>
@@ -636,6 +667,31 @@
 
 
   <!-- ======================================================================
+       HIGHLIGHTS
+       A dated list of things that actually happened: a paper accepted, a
+       dataset released, a student finishing, a talk given.
+       TO ADD ONE: copy a whole <li> line and put it at the top.
+       Newest first. Delete the sample line once there are real entries.
+       ====================================================================== -->
+  <section id="highlights">
+    <div class="container">
+      <div class="cols">
+
+        <p class="label">Highlights</p>
+
+        <div>
+          <h2>Recent activity</h2>
+          <ul class="feed">
+            <li><time>Month 2026</time> <span class="sample">Sample entry</span> What happened, in one line — a paper, a dataset, a talk, a student milestone.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
        RESEARCH AREAS
 
        Three proposed areas, each matching one example project further down.
@@ -650,8 +706,11 @@
 
         <div>
           <h2>Research areas</h2>
+          <p class="vision">We work on decisions made where the evidence is partial, late or
+          contested — and on the AI systems people increasingly use to make them.</p>
 
-          <!-- TO ADD ONE: copy a whole <article class="card"> … </article> block -->
+          <!-- TO ADD ONE: copy a whole <article class="card"> … </article> block.
+               The <ul class="sub"> list is the sub-topics inside that area. -->
           <div class="cards">
 
             <article class="card">
@@ -659,6 +718,11 @@
               <p class="q">When can an AI agent be trusted to use tools independently?</p>
               <p>We explore how tool permissions, action logs and resource limits affect the
               reliability of AI agents.</p>
+                            <ul class="sub">
+                <li>Tool permissions — what an agent is allowed to do, and on whose authority</li>
+                <li>Action logs — recording every step so a decision can be audited</li>
+                <li>Resource limits — budgets and stopping rules for autonomous runs</li>
+              </ul>
               <a class="more" href="#project-agent-tools">Learn more</a>
             </article>
 
@@ -667,6 +731,11 @@
               <p class="q">How can misleading inputs affect a chain of AI agents?</p>
               <p>We investigate how harmful instructions spread between agents and which
               safeguards can limit their effects.</p>
+                            <ul class="sub">
+                <li>Prompt injection — how a misleading instruction enters a chain of agents</li>
+                <li>Propagation — how far a bad instruction travels between agents</li>
+                <li>Safeguards — where a chain can be interrupted, and at what cost</li>
+              </ul>
               <a class="more" href="#project-poisoned-input">Learn more</a>
             </article>
 
@@ -675,6 +744,11 @@
               <p class="q">Do AI explanations help people make better decisions?</p>
               <p>We examine whether explanations improve decisions or mainly change people's
               confidence.</p>
+                            <ul class="sub">
+                <li>Explanation design — what an explanation needs to contain to be useful</li>
+                <li>Decision change — whether an explanation changes the choice</li>
+                <li>Confidence — or whether it only changes how sure people feel</li>
+              </ul>
               <a class="more" href="#project-explanations">Learn more</a>
             </article>
 
@@ -756,6 +830,12 @@
 
         <div>
           <h2>People</h2>
+
+          <!-- CATEGORIES: copy a <p class="group"> heading and the person blocks
+               under it. Suggested order: Faculty lead, Postdoctoral researchers,
+               PhD students, Masters students, Research assistants, Visiting
+               students, Collaborators. -->
+          <p class="group">PhD students</p>
 
           <article class="person">
             <img class="photo" src="IMG_4031.jpeg" alt="Placeholder photo used in the prototype">
@@ -897,6 +977,10 @@ Prospective students should contact the supervisor named on the project they are
         <div>
           <h2>Papers</h2>
 
+          <!-- GROUP BY VENUE AND YEAR: copy the <p class="group"> heading for each
+               venue, with its papers underneath. Newest first. -->
+          <p class="group">Sample entry</p>
+
           <div class="index">
 
             <article class="entry">
@@ -992,7 +1076,7 @@ Prospective students should contact the supervisor named on the project they are
        ====================================================================== -->
   <footer>
     <div class="container">
-      <p class="label">Student website prototype</p>
+      <p class="label">AIDX Lab · student website prototype</p>
       <p>Built by a student at Australian Catholic University for ITEC320 Work Integrated
       Learning, Semester 2, 2026. This page is not published, endorsed or maintained by
       Australian Catholic University or by AIDX Lab, and the content is illustrative.</p>
