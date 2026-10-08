@@ -404,6 +404,31 @@
     }
     .sub li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
 
+    .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px; }
+    .pcard {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px;
+      transition: border-color .15s;
+    }
+    .pcard:hover { border-color: var(--red); }
+    .avatar {
+      flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%;
+      background: var(--light); border: 1px solid var(--line);
+      display: grid; place-items: center;
+      font-family: var(--mono); font-size: 13px; color: var(--grey);
+    }
+    .pcard h3 { margin: 0 0 2px; font-size: 17px; line-height: 1.25; }
+    .prole {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--red); margin: 0 0 4px;
+    }
+    .pwhere { margin: 0; font-size: 13.5px; color: var(--grey); }
+    .plinks { margin: 6px 0 0; font-size: 13.5px; }
+    .plinks a { margin-right: 12px; }
+    @media (max-width: 900px) { .pgrid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .pgrid { grid-template-columns: 1fr; } }
+    @media (prefers-color-scheme: dark) { .pcard { background: #201e22; } }
+
     .roster { list-style: none; margin: 0 0 4px; padding: 0; columns: 3; column-gap: 32px; }
     .roster li { break-inside: avoid; padding: 5px 0; font-size: 16px; color: var(--black); }
     @media (max-width: 760px) { .roster { columns: 2; } }
@@ -829,65 +854,332 @@
        ====================================================================== -->
   <section id="people">
     <div class="container">
-      <div class="cols">
+      <div class="cols wide">
 
         <p class="label">People</p>
 
         <div>
           <h2>People</h2>
 
-          <!-- TO ADD SOMEONE: add an <li> under the right heading.
-               Photos, emails, bios and Scholar links are only added with that
-               person's permission — ask before publishing any of them. -->
+          <!-- TO ADD SOMEONE: copy a whole <article class="pcard"> block into the
+               right group. The two letters in the avatar are their initials.
+               Photos and links only go in with that person's permission. -->
+
           <p class="group">Director</p>
-          <ul class="roster">
-            <li>Dr Walayat Hussain</li>
-          </ul>
+          <div class="pgrid">
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">WH</span>
+              <div>
+                <p class="prole">Director</p>
+                <h3>Dr Walayat Hussain</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+          </div>
 
           <p class="group">Research associates</p>
-          <ul class="roster">
-            <li>Dr Syed Muhammad Fazal-e-Hasan</li>
-            <li>Dr Andrea Giovanetti</li>
-            <li>Dr Mahmoud Bekhit</li>
-            <li>Dr Machi Varanasi</li>
-          </ul>
+          <div class="pgrid">
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">SH</span>
+              <div>
+                <p class="prole">Research associate</p>
+                <h3>Dr Syed Muhammad Fazal-e-Hasan</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">AG</span>
+              <div>
+                <p class="prole">Research associate</p>
+                <h3>Dr Andrea Giovanetti</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">MB</span>
+              <div>
+                <p class="prole">Research associate</p>
+                <h3>Dr Mahmoud Bekhit</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">MV</span>
+              <div>
+                <p class="prole">Research associate</p>
+                <h3>Dr Machi Varanasi</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+          </div>
 
           <p class="group">PhD students</p>
-          <ul class="roster">
-            <li>Md Nazmul Hossain</li>
-            <li>Anik Kumar Saha</li>
-            <li>Syed Mustejab</li>
-            <li>Bhupendra Giri</li>
-          </ul>
+          <div class="pgrid">
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">NH</span>
+              <div>
+                <p class="prole">PhD student</p>
+                <h3>Md Nazmul Hossain</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">AS</span>
+              <div>
+                <p class="prole">PhD student</p>
+                <h3>Anik Kumar Saha</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">SM</span>
+              <div>
+                <p class="prole">PhD student</p>
+                <h3>Syed Mustejab</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">BG</span>
+              <div>
+                <p class="prole">PhD student</p>
+                <h3>Bhupendra Giri</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+          </div>
 
           <p class="group">MRes students</p>
-          <ul class="roster">
-            <li>Muhammad Nasir</li>
-            <li>Liam New</li>
-            <li>Gurveer Singh</li>
-          </ul>
+          <div class="pgrid">
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">MN</span>
+              <div>
+                <p class="prole">MRes student</p>
+                <h3>Muhammad Nasir</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">LN</span>
+              <div>
+                <p class="prole">MRes student</p>
+                <h3>Liam New</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">GS</span>
+              <div>
+                <p class="prole">MRes student</p>
+                <h3>Gurveer Singh</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+          </div>
 
           <p class="group">Research assistants</p>
-          <ul class="roster">
-            <li>Md Abdullah Al Kafi</li>
-            <li>Karl Perez de Tagle</li>
-          </ul>
+          <div class="pgrid">
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">AK</span>
+              <div>
+                <p class="prole">Research assistant</p>
+                <h3>Md Abdullah Al Kafi</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">KT</span>
+              <div>
+                <p class="prole">Research assistant</p>
+                <h3>Karl Perez de Tagle</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+          </div>
 
           <p class="group">Interns</p>
-          <ul class="roster">
-            <li>Md Tawheed Ul Islam</li>
-            <li>Ayush Khanal</li>
-            <li>Pratik Katwal</li>
-            <li>Siaki Aluni-Tuulaupua</li>
-            <li>Mohammed Jasim Ur Rahman</li>
-            <li>Siddhartha Poudel</li>
-            <li>Palden Gurung</li>
-            <li>Dhurba Niroula</li>
-            <li>Jasleen Kaur</li>
-            <li>Aryan Shresthacharya</li>
-            <li>Nishant Shrestha</li>
-            <li>Harshvardhansinh Kuldeepsinh Raol</li>
-          </ul>
+          <div class="pgrid">
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">TI</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Md Tawheed Ul Islam</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">AK</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Ayush Khanal</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">PK</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Pratik Katwal</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">ST</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Siaki Aluni-Tuulaupua</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">MR</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Mohammed Jasim Ur Rahman</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">SP</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Siddhartha Poudel</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">PG</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Palden Gurung</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">DN</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Dhurba Niroula</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">JK</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Jasleen Kaur</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">AS</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Aryan Shresthacharya</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">NS</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Nishant Shrestha</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+            <article class="pcard">
+              <span class="avatar" aria-hidden="true">HR</span>
+              <div>
+                <p class="prole">Intern</p>
+                <h3>Harshvardhansinh Kuldeepsinh Raol</h3>
+                <p class="pwhere">Australian Catholic University</p>
+                <!-- When this person agrees, add their links here:
+                     <p class="plinks"><a href="">Scholar</a> <a href="">LinkedIn</a></p> -->
+              </div>
+            </article>
+
+          </div>
         </div>
 
       </div>
