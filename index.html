@@ -404,6 +404,11 @@
     }
     .sub li::before { content: "—"; position: absolute; left: 0; color: var(--red); }
 
+    .roster { list-style: none; margin: 0 0 4px; padding: 0; columns: 3; column-gap: 32px; }
+    .roster li { break-inside: avoid; padding: 5px 0; font-size: 16px; color: var(--black); }
+    @media (max-width: 760px) { .roster { columns: 2; } }
+    @media (max-width: 480px) { .roster { columns: 1; } }
+
     .group {
       font-family: var(--mono); font-size: 11px; letter-spacing: .1em;
       text-transform: uppercase; color: var(--grey);
@@ -596,7 +601,7 @@
        ====================================================================== -->
   <div class="notice">
     <div class="container">
-      Student website prototype. Research areas, projects, people and outcomes are illustrative and are not verified AIDX Lab information.
+      Student website prototype. The people listed are real lab members; research areas, projects, papers and outcomes shown are illustrative.
     </div>
   </div>
 
@@ -831,32 +836,58 @@
         <div>
           <h2>People</h2>
 
-          <!-- CATEGORIES: copy a <p class="group"> heading and the person blocks
-               under it. Suggested order: Faculty lead, Postdoctoral researchers,
-               PhD students, Masters students, Research assistants, Visiting
-               students, Collaborators. -->
+          <!-- TO ADD SOMEONE: add an <li> under the right heading.
+               Photos, emails, bios and Scholar links are only added with that
+               person's permission — ask before publishing any of them. -->
+          <p class="group">Director</p>
+          <ul class="roster">
+            <li>Dr Walayat Hussain</li>
+          </ul>
+
+          <p class="group">Research associates</p>
+          <ul class="roster">
+            <li>Dr Syed Muhammad Fazal-e-Hasan</li>
+            <li>Dr Andrea Giovanetti</li>
+            <li>Dr Mahmoud Bekhit</li>
+            <li>Dr Machi Varanasi</li>
+          </ul>
+
           <p class="group">PhD students</p>
+          <ul class="roster">
+            <li>Md Nazmul Hossain</li>
+            <li>Anik Kumar Saha</li>
+            <li>Syed Mustejab</li>
+            <li>Bhupendra Giri</li>
+          </ul>
 
-          <article class="person">
-            <img class="photo" src="IMG_4031.jpeg" alt="Placeholder photo used in the prototype">
-            <div>
-              <h3>S. Aryan <span class="sample">Sample profile</span></h3>
-              <p class="role">PhD Candidate</p>
-              <p>Engineering trust out of autonomous systems, one exploit at a time.</p>
-              <p class="path">BEng → MSc Security, Lagos → AIDX</p>
-            </div>
-          </article>
+          <p class="group">MRes students</p>
+          <ul class="roster">
+            <li>Muhammad Nasir</li>
+            <li>Liam New</li>
+            <li>Gurveer Singh</li>
+          </ul>
 
-          <article class="person">
-            <div class="photo">AA</div>
-            <div>
-              <h3>A. Arjun <span class="sample">Sample profile</span></h3>
-              <p class="role">PhD Candidate</p>
-              <p>Securing AI isn't about building stronger walls; it's about teaching agents not to open the door.</p>
-              <p class="path">BEng → MSc Security, Lagos → AIDX</p>
-            </div>
-          </article>
+          <p class="group">Research assistants</p>
+          <ul class="roster">
+            <li>Md Abdullah Al Kafi</li>
+            <li>Karl Perez de Tagle</li>
+          </ul>
 
+          <p class="group">Interns</p>
+          <ul class="roster">
+            <li>Md Tawheed Ul Islam</li>
+            <li>Ayush Khanal</li>
+            <li>Pratik Katwal</li>
+            <li>Siaki Aluni-Tuulaupua</li>
+            <li>Mohammed Jasim Ur Rahman</li>
+            <li>Siddhartha Poudel</li>
+            <li>Palden Gurung</li>
+            <li>Dhurba Niroula</li>
+            <li>Jasleen Kaur</li>
+            <li>Aryan Shresthacharya</li>
+            <li>Nishant Shrestha</li>
+            <li>Harshvardhansinh Kuldeepsinh Raol</li>
+          </ul>
         </div>
 
       </div>
