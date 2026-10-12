@@ -392,7 +392,7 @@
     .feed li { padding: 11px 0; border-bottom: 1px solid var(--line); }
     .feed time {
       font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--blue, var(--red)); margin-right: 10px;
+      text-transform: uppercase; color: var(--red); margin-right: 10px;
     }
 
     .vision { max-width: 64ch; margin: 0 0 26px; font-size: 18px; }
@@ -575,6 +575,7 @@
     @media (prefers-color-scheme: dark) {
       :root {
         --red:    #6fb2ff;
+        --blue:   #6fb2ff;   /* the light-mode blue is unreadable on a dark ground */
         --cyan:   #4fd8f5;
         --black:  #f4f2ef;
         --text:   #d2cec8;
