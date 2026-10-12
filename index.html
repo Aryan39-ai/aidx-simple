@@ -302,7 +302,7 @@
     .banner .record b { color: #f3c9ce; }
 
     /* The four jump buttons */
-    .jumps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 0; }
+    .jumps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 30px 0 0; }
     .jump-btn {
       display: flex; justify-content: space-between; align-items: center; gap: 12px;
       background: var(--deep); color: #fff; text-decoration: none;
@@ -313,7 +313,7 @@
     .jump-btn span { opacity: .8; }
 
     /* Cards for research areas and projects */
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
     .card {
       display: flex; flex-direction: column;
       background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
@@ -627,7 +627,7 @@
        ====================================================================== -->
   <div class="notice">
     <div class="container">
-      Student website prototype. People and papers listed are real; research areas, projects and outcomes shown are illustrative.
+      Student website prototype. People and papers listed are real. Research areas are grouped from those papers and await confirmation; alumni outcomes and entry requirements are still illustrative.
     </div>
   </div>
 
@@ -644,7 +644,6 @@
 
       <nav>
         <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
         <a href="#people">People</a>
         <a href="#join">Join us</a>
         <a href="#contact">Contact</a>
@@ -690,7 +689,6 @@
   <div class="container">
     <div class="jumps">
       <a class="jump-btn" href="#research">Research areas <span>&rarr;</span></a>
-      <a class="jump-btn" href="#projects">Projects <span>&rarr;</span></a>
       <a class="jump-btn" href="#people">People <span>&rarr;</span></a>
       <a class="jump-btn" href="#join">Join the lab <span>&rarr;</span></a>
     </div>
@@ -748,50 +746,62 @@
 
         <div>
           <h2>Research areas</h2>
-          <p class="vision">We work on decisions made where the evidence is partial, late or
-          contested — and on the AI systems people increasingly use to make them.</p>
+          <p class="vision">Grouped from the Lab's published work in 2025 and 2026. Each area lists
+          the papers behind it. Wording to be confirmed with the Director.</p>
 
-          <!-- TO ADD ONE: copy a whole <article class="card"> … </article> block.
-               The <ul class="sub"> list is the sub-topics inside that area. -->
+          <!-- TO ADD ONE: copy a whole <article class="card"> block. The list inside
+               should link to the papers that sit under that area. -->
           <div class="cards">
 
             <article class="card">
-              <h3>Trustworthy AI Agents</h3>
-              <p class="q">When can an AI agent be trusted to use tools independently?</p>
-              <p>We explore how tool permissions, action logs and resource limits affect the
-              reliability of AI agents.</p>
-                            <ul class="sub">
-                <li>Tool permissions — what an agent is allowed to do, and on whose authority</li>
-                <li>Action logs — recording every step so a decision can be audited</li>
-                <li>Resource limits — budgets and stopping rules for autonomous runs</li>
+              <h3>AI for teaching and assessment</h3>
+              <p class="q">How can AI agents support students and teachers without replacing their judgement?</p>
+              <p>Agentic frameworks for early detection and nudging, personalised learning, LLM education agents, automated feedback, and safe assessment in security education.</p>
+              <p class="meta">6 published works</p>
+              <ul class="sub">
+                <li><a href="https://doi.org/10.1007/978-3-032-31204-4_11">Reimagining Student Success: An Agentic Framework for Earl…</a></li>
+                <li><a href="https://doi.org/10.1109/iccetm66557.2025.11557755">From Static to Dynamic Personalization: Applying Agentic A…</a></li>
+                <li><a href="https://doi.org/10.1109/iccetm66557.2025.11558109">AI intelligence within Teaching: A Multidimensional Evalua…</a></li>
+                <li><a href="https://doi.org/10.1201/9781032632483-1">Utilising Large Language Models for Feedback Generation in…</a></li>
+                <li><a href="https://doi.org/10.1109/lt68265.2026.11592534">Twin Minds in Cyber-Defense: A Dual-Agent Framework for Sa…</a></li>
+                <li><a href="https://doi.org/10.17632/phk8yrfrc4.6">STEM Student Course Perception(SSCP) Dataset</a></li>
               </ul>
-              <a class="more" href="#project-agent-tools">Learn more</a>
             </article>
 
             <article class="card">
-              <h3>AI Security</h3>
-              <p class="q">How can misleading inputs affect a chain of AI agents?</p>
-              <p>We investigate how harmful instructions spread between agents and which
-              safeguards can limit their effects.</p>
-                            <ul class="sub">
-                <li>Prompt injection — how a misleading instruction enters a chain of agents</li>
-                <li>Propagation — how far a bad instruction travels between agents</li>
-                <li>Safeguards — where a chain can be interrupted, and at what cost</li>
+              <h3>Decision support with large language models</h3>
+              <p class="q">Can a language model help make a defensible decision, not just a fast one?</p>
+              <p>Evidence aggregation, multi-criteria decision methods, forecasting and optimisation, and topic modelling applied to decision problems.</p>
+              <p class="meta">3 published works</p>
+              <ul class="sub">
+                <li><a href="https://doi.org/10.2139/ssrn.6277363">Credibility-Weighted Evidence Aggregation Using Hybrid LLM…</a></li>
+                <li><a href="https://doi.org/10.1016/j.rser.2026.117171">Harnessing AI-driven large language models (LLMs) for enha…</a></li>
+                <li><a href="https://doi.org/10.32604/cmc.2025.065916">GLMTopic: A Hybrid Chinese Topic Model Leveraging Large La…</a></li>
               </ul>
-              <a class="more" href="#project-poisoned-input">Learn more</a>
             </article>
 
             <article class="card">
-              <h3>Human–AI Decision Making</h3>
-              <p class="q">Do AI explanations help people make better decisions?</p>
-              <p>We examine whether explanations improve decisions or mainly change people's
-              confidence.</p>
-                            <ul class="sub">
-                <li>Explanation design — what an explanation needs to contain to be useful</li>
-                <li>Decision change — whether an explanation changes the choice</li>
-                <li>Confidence — or whether it only changes how sure people feel</li>
+              <h3>Fraud and anomaly detection</h3>
+              <p class="q">What does fraud look like once you account for where and when it happens?</p>
+              <p>Spatial and temporal analysis, category-specific features, graph neural networks and balanced learning for imbalanced data.</p>
+              <p class="meta">3 published works</p>
+              <ul class="sub">
+                <li><a href="https://doi.org/10.1201/9781032632483-8">Enhancing Credit Card Fraud Detection with Spatial-Tempora…</a></li>
+                <li><a href="https://doi.org/10.1007/978-3-031-95652-2_8">Leveraging Category-Specific Features and Geographic Conte…</a></li>
+                <li><a href="https://doi.org/10.1016/j.dcan.2025.03.012">Dynamic GNN-based multimodal anomaly detection for spatial…</a></li>
               </ul>
-              <a class="more" href="#project-explanations">Learn more</a>
+            </article>
+
+            <article class="card">
+              <h3>Health and medical AI</h3>
+              <p class="q">Where can AI carry real clinical weight, and where should it stop?</p>
+              <p>Diagnostic report generation from imaging, lightweight explainable classification, and deep learning applied to stroke care.</p>
+              <p class="meta">3 published works</p>
+              <ul class="sub">
+                <li><a href="https://doi.org/10.1109/isbi60581.2025.10981080">Automatic Generation of Brain Tumor Diagnostic Reports fro…</a></li>
+                <li><a href="https://doi.org/10.48550/arxiv.2608.24793">EMFE: A lightweight, explainable machine learning framewor…</a></li>
+                <li><a href="https://doi.org/10.1016/b978-0-443-41459-6.00001-8">Deep learning in stroke care</a></li>
+              </ul>
             </article>
 
           </div>
@@ -808,57 +818,8 @@
        Each project has its own id so the research areas can link to it.
        The line with the red bar says what a student would do.
        ====================================================================== -->
-  <section id="projects">
-    <div class="container">
-      <div class="cols wide">
 
-        <p class="label">Projects</p>
-
-        <div>
-          <h2>Projects</h2>
-
-          <!-- TO ADD ONE: copy a whole <article class="card"> … </article> block.
-               The id is what the research cards link to. -->
-          <div class="cards">
-
-            <article class="card" id="project-agent-tools">
-              <h3>Can an agent be trusted with real tools?</h3>
-              <p class="meta">Honours / Summer intern · Sample supervisor profile · Sample project</p>
-              <p>Give an agent a small set of real tools and a budget, then log every step to
-              see where it goes wrong when nobody is checking.</p>
-              <p class="aside">A student would build the sandbox and compare how two agents
-              spend the same budget.</p>
-              <a class="more" href="#research">Trustworthy AI Agents</a>
-            </article>
-
-            <article class="card" id="project-poisoned-input">
-              <h3>How far does a poisoned input travel?</h3>
-              <p class="meta">Honours / PhD · Sample supervisor profile · Sample project</p>
-              <p>One bad input goes into a chain of agents that trust each other. The project
-              measures how many steps it survives, and what stops it.</p>
-              <p class="aside">A student would write the test cases and turn the results into
-              a dataset.</p>
-              <a class="more" href="#research">AI Security</a>
-            </article>
-
-            <article class="card" id="project-explanations">
-              <h3>Does an explanation change the decision?</h3>
-              <p class="meta">Honours · Sample supervisor profile · Sample project</p>
-              <p>People make the same decision with and without an AI explanation. The project
-              looks at whether the explanation changes the choice, or only their confidence.</p>
-              <p class="aside">A student would run the sessions and analyse the results.</p>
-              <a class="more" href="#research">Human–AI Decision Making</a>
-            </article>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ======================================================================
+<!-- ======================================================================
        PEOPLE — sample profiles
 
        These are invented profiles used to show the layout. Do not add a
